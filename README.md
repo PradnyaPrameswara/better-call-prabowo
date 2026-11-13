@@ -15,6 +15,8 @@ pnpm install
 pnpm dev
 pnpm check
 pnpm build
+pnpm exec playwright install chromium
+pnpm run test:browser
 # optional: restore missing local image files
 pnpm media:sync
 ```
@@ -34,5 +36,7 @@ See [UI SDK integration notes](docs/ui-sdk.md).
 Changes are organized as stacked pull requests: foundation → [reference audit](docs/reference-audit.md) → shared layout → page content → interaction/visual parity → deployment.
 
 See [asset provenance](docs/asset-inventory.md) and [curated photo/video sources](docs/media-sources.md). Seven curated Prabowo photographs now live under `public/images/prabowo/` with original source credits in `docs/media-sources.md`.
+
+See [Stage 3 parity notes](docs/stage3-parity.md) and [browser/deployment instructions](docs/browser-pages.md).
 
 Reference: https://bettercallsaul.amc.com/
