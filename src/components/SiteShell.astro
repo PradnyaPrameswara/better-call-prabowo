@@ -11,6 +11,7 @@ import "../styles/ecards-webcam.css";
 import "../styles/stage3.css";
 import "../styles/fidelity.css";
 import "../styles/framing.css";
+import "../styles/legibility.css";
 
 interface Props {
   page: PageId;
@@ -83,12 +84,21 @@ const hasShowcase = page === "asseenontv";
       </div>
     </section>
 
-    <section class="retro-message" id="tentang">
-      <div class="message-emblem" aria-hidden="true">★</div>
-      <div>
-        <h2>JANGAN LEWATKAN BERITANYA!!!</h2>
+    <section class="retro-message" id="tentang" aria-labelledby="news-title">
+      <div class="message-emblem">
+        <img
+          src={`${base}images/presidential-seal-gold.svg`}
+          alt="Cap Kepresidenan Republik Indonesia, ilustrasi arsip"
+          width="74"
+          height="74"
+          loading="lazy"
+        />
+      </div>
+      <div class="message-copy">
+        <h2 id="news-title">JANGAN LEWATKAN BERITANYA!!!</h2>
         <p>Lihat koleksi video, foto arsip, dan kartu digital dengan gaya iklan televisi yang penuh warna!</p>
       </div>
+      <p class="message-disclaimer">Lambang Kepresidenan sebagai ilustrasi arsip · Bukan situs resmi</p>
     </section>
 
     <footer class="retro-footer">
