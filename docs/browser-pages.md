@@ -19,6 +19,10 @@ Playwright tests cover the five pages at 1920×1080, 1440×900, 768×1024, 390×
 - e-card preview and copy
 - simulated webcam selection
 
+The project disables Astro's development toolbar so it cannot cover screenshots. Interaction tests await the Astro island hydration boundary before clicking.
+
+The committed `pnpm-lock.yaml` is used with frozen installations in both CI and deployment.
+
 The CI workflow uploads `test-results/screenshots` and the Playwright HTML report for inspection. These are **local page screenshots, not automatic pixel-diff proof against AMC**. Different photos/text/video require masking before meaningful pixel-diff calculations.
 
 ## GitHub Pages

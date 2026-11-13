@@ -24,6 +24,7 @@ for (const viewport of viewports) {
       page.on("pageerror", (error) => errors.push(error.message));
       await page.goto(route.route);
       await expect(page.locator(".retro-site")).toBeVisible();
+      await expect(page.locator("astro-dev-toolbar")).toHaveCount(0);
       await expect(page.locator("main h1")).toBeVisible();
       await expect(page.locator(".nav-links a")).toHaveCount(5);
       await expect(page.locator('a[href*="bettercallsaul.amc.com"]')).toHaveCount(1);
@@ -84,6 +85,7 @@ test("navigation, fictional testimony and source attribution", async ({ page }) 
 
 test("e-card preview updates without submitting email", async ({ page }) => {
   await page.goto("/ecards/");
+  await expect.poll(() => page.locator(".ecards-studio").evaluate((node) => node.closest("astro-island")?.hasAttribute("ssr") ?? true)).toBe(false);
   await page.getByRole("button", { name: /SELAMAT PAGI!/i }).click();
   await expect(page.locator(".ecard-preview > strong")).toHaveText("SELAMAT PAGI!");
   await page.locator("#ecard-from").fill("Penggemar");

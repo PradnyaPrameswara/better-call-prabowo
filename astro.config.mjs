@@ -9,6 +9,7 @@ export default defineConfig({
   site,
   base: base.endsWith("/") ? base : `${base}/`,
   output: "static",
+  devToolbar: { enabled: false },
   trailingSlash: "always",
   integrations: [react()],
   vite: { plugins: [tailwindcss()] },
