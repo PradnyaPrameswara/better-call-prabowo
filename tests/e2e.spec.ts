@@ -24,6 +24,30 @@ for (const viewport of viewports) {
       page.on("pageerror", (error) => errors.push(error.message));
       await page.goto(route.route);
       await expect(page.locator(".retro-site")).toBeVisible();
+      const banner = page.locator(".retro-banner-picture img");
+      await expect(banner).toBeVisible();
+      await expect(page.locator(".header-portrait")).toHaveCount(0);
+      await expect(page.locator(".retro-announcement")).toHaveCount(0);
+      const bannerMetrics = await banner.evaluate((image) => {
+        const img = image as HTMLImageElement;
+        const box = img.getBoundingClientRect();
+        return {
+          width: box.width,
+          height: box.height,
+          loadedWidth: img.naturalWidth,
+          loadedHeight: img.naturalHeight,
+          currentSrc: img.currentSrc,
+          fit: getComputedStyle(img).objectFit,
+        };
+      });
+      expect(bannerMetrics.loadedWidth).toBeGreaterThan(0);
+      expect(bannerMetrics.fit).toBe("contain");
+      const expectedRatio = viewport.width <= 600 ? 3 : 1200 / 220;
+      expect(Math.abs(bannerMetrics.width / bannerMetrics.height - expectedRatio)).toBeLessThan(0.03);
+      expect(bannerMetrics.currentSrc).toContain(
+        viewport.width <= 600 ? "better-call-prabowo-mobile.avif" : "better-call-prabowo-desktop.avif"
+      );
+      await expect(page.locator(".retro-banner-cta")).toHaveAttribute("href", "#konten");
       await expect(page.locator("astro-dev-toolbar")).toHaveCount(0);
       await expect(page.locator("main h1")).toBeVisible();
       await expect(page.locator(".nav-links a")).toHaveCount(5);

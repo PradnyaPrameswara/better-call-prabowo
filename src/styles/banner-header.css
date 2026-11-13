@@ -1,0 +1,46 @@
+/* User-supplied artwork, art-directed to match the classic 960px retro shell. */
+.retro-header.retro-banner-header {
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: #ffe20b;
+  overflow: hidden;
+}
+.retro-banner-picture { display: block; width: 100%; line-height: 0; }
+.retro-banner-picture img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  object-fit: contain;
+  aspect-ratio: 60 / 11;
+}
+.retro-banner-cta {
+  position: absolute;
+  z-index: 2;
+  inset: auto 0 0;
+  height: 15.5%;
+  min-height: 18px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.retro-banner-cta:hover { background: #ffffff12; }
+.retro-banner-cta:focus-visible {
+  outline: 3px solid #0c4695;
+  outline-offset: -5px;
+  background: #ffffff17;
+}
+@media (max-width: 600px) {
+  .retro-banner-picture img { aspect-ratio: 3 / 1; }
+  .retro-banner-cta { height: 15.7%; }
+}
