@@ -31,6 +31,6 @@ See [UI SDK integration notes](docs/ui-sdk.md).
 
 Changes are organized as stacked pull requests: foundation → [reference audit](docs/reference-audit.md) → shared layout → page content → interaction/visual parity → deployment.
 
-See [asset provenance](docs/asset-inventory.md). The public Wikimedia portrait is used remotely during layout development; replace with a reviewed local asset when finalizing the design.
+See [asset provenance](docs/asset-inventory.md) and [curated photo/video sources](docs/media-sources.md). The public Wikimedia portrait is used remotely during layout development; replace with a reviewed local asset when finalizing the design.
 
 Reference: https://bettercallsaul.amc.com/

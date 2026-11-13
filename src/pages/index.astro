@@ -1,7 +1,13 @@
 ---
 import SiteShell from "../components/SiteShell.astro";
-import PlaceholderPanel from "../components/PlaceholderPanel.astro";
+import MediaGallery from "../components/MediaGallery";
+import { consultations } from "../data/media";
 ---
 <SiteShell page="consultations" title="Beranda">
-  <PlaceholderPanel page="consultations" />
+  <MediaGallery
+    client:load
+    items={consultations}
+    heading="ADA KABAR HEBAT?"
+    intro="TONTON ARSIP VIDEO PRABOWO!"
+  />
 </SiteShell>
