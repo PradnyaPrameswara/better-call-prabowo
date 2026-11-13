@@ -41,7 +41,7 @@
   min-width: 0;
   min-height: 0;
   background-color: #bb5009;
-  background-position: left center;
+  background-position: left top;
   background-repeat: no-repeat;
   background-size: 500% 120%;
   border-right: 2px solid #db9f05;
@@ -62,7 +62,7 @@
 .retro-banner-script {
   display: block;
   max-width: 100%;
-  font: italic 900 clamp(12px, 3vw, 39px)/1 "Brush Script MT", "Segoe Script", Georgia, cursive;
+  font: italic 900 clamp(12px, 4vw, 48px)/1 "Brush Script MT", "Segoe Script", Georgia, cursive;
   color: #271400;
   letter-spacing: -1px;
   white-space: nowrap;
