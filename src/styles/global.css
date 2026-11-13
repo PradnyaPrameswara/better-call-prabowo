@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+/* Global defaults; reference-specific styling is introduced in PR #03. */
+:root { font-family: Arial, Helvetica, sans-serif; color: #251006; }
+* { box-sizing: border-box; }
+html { min-width: 320px; }
+body { margin: 0; }
+a { color: inherit; }
+button, input, textarea, select { font: inherit; }
