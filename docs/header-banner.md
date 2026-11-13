@@ -19,3 +19,17 @@ The old AVIF contained photographic artifacts **inside the banner pixels**. A pr
 The one-time restoration script `scripts/repair-header-artwork.py` cleans the original embedded background fragments in the existing 1200×220 desktop AVIF and restores the right-side portrait as a **single masked foreground**. It retains the left archival vignette, brand lettering and CTA; the two intentionally different subject compositions remain, without doubled cutout layers.
 
 The browser regression test samples two pixel locations where the previous black/colored ghosts appeared to protect against reintroducing this problem. The output is an updated local AVIF at the same URL, so no CSS or page layout changes are needed.
+
+## Permanent structural repair — November 2026
+
+The last raster patch still contained a doubled peci and a rectangular yellow seam on the right, visible at higher browser zoom. This was **part of the image pixels**, not a CSS crop. Further pixel masking was therefore abandoned.
+
+The shared Astro header is now a responsive **three-panel composition**:
+- Left: only the intact leftmost vignette of the previously approved composite, isolated as a CSS background so damaged pixels on its right side can never render.
+- Center: accessible native text for “Better Call Prabowo!”, “PRABOWO” and “PRESIDEN INDONESIA”. Typography stays sharp as browser zoom changes.
+- Right: **one** locally stored official Prabowo portrait, rendered with `object-fit: contain`, not an overlaid version of the damaged illustration.
+- Bottom: a native, keyboard-accessible red CTA with visible text.
+
+This changes the specific right-hand pose from the damaged wink cutout to a single clear official portrait. It preserves the reference-inspired bright color palette and the approx. 60:11 desktop header proportions. On narrow screens the header gains height as necessary instead of cropping words or faces.
+
+No additional image generation, network assets, JS hydration or new dependencies are required. The broken flattened banner remains in the repository only as a cropped **left decorative background** and must not be restored as the complete banner.
