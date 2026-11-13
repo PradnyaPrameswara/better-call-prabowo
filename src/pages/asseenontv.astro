@@ -1,7 +1,13 @@
 ---
 import SiteShell from "../components/SiteShell.astro";
-import PlaceholderPanel from "../components/PlaceholderPanel.astro";
+import MediaGallery from "../components/MediaGallery";
+import { television } from "../data/media";
 ---
 <SiteShell page="asseenontv" title="Di Televisi">
-  <PlaceholderPanel page="asseenontv" />
+  <MediaGallery
+    client:load
+    items={television}
+    heading="SEPERTI DI TV!"
+    intro="VIDEO ARSIP & LIPUTAN RESMI!"
+  />
 </SiteShell>

@@ -1,0 +1,12 @@
+.testimonial-tiles { gap: 11px 13px; }
+.testimonial-tile { min-width: 0; }
+.testimonial-tile summary { display: flex; flex-direction: column; cursor: pointer; text-align: center; list-style: none; }
+.testimonial-tile summary::-webkit-details-marker { display: none; }
+.testimonial-tile summary:focus-visible { outline: 3px dashed #1d3f91; outline-offset: 2px; }
+.testimonial-tile summary:hover .media-frame, .testimonial-tile[open] .media-frame { outline: 3px solid #d10b00; outline-offset: 2px; }
+.testimonial-tile .media-frame img { object-position: 55% 43%; }
+.testimonial-tile small { font: 800 10px/1.1 Arial, sans-serif; color: #682800; padding-top: 2px; }
+.fiction-stamp { position: absolute; left: 5px; top: 5px; transform: rotate(-8deg); background: #e21900; color: #fff; border: 2px solid #ffe400; padding: 3px 5px; font: 900 13px/1 Arial, sans-serif; }
+.testimonial-story { margin-top: 5px; border: 2px solid #bd2000; background: #fff69a; padding: 7px; text-align: left; font: 700 12px/1.3 Arial, sans-serif; }
+.testimonial-story p { margin: 0 0 7px; }
+.testimonial-story span { color: #be1600; font: 900 10px Arial, sans-serif; }
