@@ -67,7 +67,7 @@ test("homepage reproduces four consultation thumbnails and opens source media", 
   await expect(choices).toHaveCount(4);
   await expect(page.locator(".media-tiles .media-gallery-promo")).toBeVisible();
   const geometry = await page.evaluate(() => ({
-    columns: getComputedStyle(document.querySelector(".media-tiles .media-thumbnails")!).gridTemplateColumns.trim().split(/\\s+/).length,
+    columns: getComputedStyle(document.querySelector(".media-tiles .media-thumbnails")!).gridTemplateColumns.trim().split(/\s+/).length,
     galleryWidth: document.querySelector(".media-tiles")?.getBoundingClientRect().width ?? 0,
   }));
   expect(geometry.columns).toBe(2);
@@ -76,7 +76,7 @@ test("homepage reproduces four consultation thumbnails and opens source media", 
   const modal = page.locator(".media-dialog");
   await expect(modal).toBeVisible();
   await expect(modal.locator(".media-dialog-header strong")).toHaveText("KTT G20!");
-  await expect(modal.locator("iframe")).toHaveAttribute("src", /youtube-nocookie\\.com\\/embed/);
+  await expect(modal.locator("iframe")).toHaveAttribute("src", /youtube-nocookie\.com\/embed/);
   await page.getByRole("button", { name: "Tutup pemutar" }).click();
   await expect(modal).not.toBeVisible();
   await expect(modal.locator("iframe")).toHaveCount(0);
@@ -94,7 +94,7 @@ test("TV gallery retains selectable video player", async ({ page }) => {
   await choices.nth(1).click();
   await expect(choices.nth(1)).toHaveAttribute("aria-pressed", "true");
   await page.getByRole("button", { name: /putar video arsip/i }).click();
-  await expect(page.locator(".showcase-video-embed")).toHaveAttribute("src", /youtube-nocookie\\.com\\/embed/);
+  await expect(page.locator(".showcase-video-embed")).toHaveAttribute("src", /youtube-nocookie\.com\/embed/);
   await choices.nth(2).click();
   await expect(page.locator(".showcase-video-embed")).toHaveCount(0);
 });
