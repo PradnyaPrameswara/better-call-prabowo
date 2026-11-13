@@ -1,0 +1,18 @@
+---
+import { portrait, sidebarPromotions } from "../data/site";
+---
+<aside class="retro-sidebar" aria-label="Poster promosi parodi">
+  <div class="sidebar-heading">SITUS PARODI!</div>
+  <div class="sidebar-poster">
+    <span class="poster-star">★</span>
+    <strong>BETTER CALL<br />PRABOWO!</strong>
+    <img src={portrait.src} alt={portrait.alt} width="120" height="152" loading="lazy" />
+    <span class="poster-caption">BUKAN SITUS RESMI</span>
+  </div>
+  {sidebarPromotions.map((promotion) => (
+    <div class:list={["sidebar-ad", promotion.variation]}>
+      <strong>{promotion.title}</strong>
+      <small>{promotion.detail}</small>
+    </div>
+  ))}
+</aside>
