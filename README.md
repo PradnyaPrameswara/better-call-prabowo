@@ -15,6 +15,8 @@ pnpm install
 pnpm dev
 pnpm check
 pnpm build
+# optional: restore missing local image files
+pnpm media:sync
 ```
 
 Node.js 22.23.4 or newer.
@@ -31,6 +33,6 @@ See [UI SDK integration notes](docs/ui-sdk.md).
 
 Changes are organized as stacked pull requests: foundation → [reference audit](docs/reference-audit.md) → shared layout → page content → interaction/visual parity → deployment.
 
-See [asset provenance](docs/asset-inventory.md) and [curated photo/video sources](docs/media-sources.md). The public Wikimedia portrait is used remotely during layout development; replace with a reviewed local asset when finalizing the design.
+See [asset provenance](docs/asset-inventory.md) and [curated photo/video sources](docs/media-sources.md). Seven curated Prabowo photographs now live under `public/images/prabowo/` with original source credits in `docs/media-sources.md`.
 
 Reference: https://bettercallsaul.amc.com/

@@ -16,7 +16,7 @@ export const navigation = [
 export type PageId = (typeof navigation)[number]["id"];
 
 export const portrait = {
-  src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Prabowo_Subianto_2024_official_portrait.jpg/500px-Prabowo_Subianto_2024_official_portrait.jpg",
+  src: `${import.meta.env.BASE_URL}images/prabowo/portrait.jpg`,
   alt: "Potret resmi Prabowo Subianto tahun 2024",
   source: "https://commons.wikimedia.org/wiki/File:Prabowo_Subianto_2024_official_portrait.jpg",
   credit: "Darwis Triadi / Kementerian Sekretariat Negara, via Wikimedia Commons",

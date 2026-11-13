@@ -16,7 +16,7 @@ export default function ECardStudio() {
     event.preventDefault();
     const subject = encodeURIComponent(`E-CARD PARODI: ${card.title}`);
     const body = encodeURIComponent(cardText);
-    const recipient = encodeURIComponent(to.trim());
+    const recipient = encodeURIComponent(to.trim()).replace(/%40/gi, "@");
     window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
   }
 

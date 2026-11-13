@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Button } from "@ui-sdk/react/button";
-import type { MediaItem } from "../data/media";
+import { photos, type MediaItem } from "../data/media";
 
 interface Props {
   items: MediaItem[];
@@ -48,7 +48,7 @@ export default function MediaGallery({ items, heading, intro }: Props) {
         <aside className="media-gallery-promo">
           <strong>{intro}</strong>
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Prabowo_Subianto_2024_official_portrait.jpg/500px-Prabowo_Subianto_2024_official_portrait.jpg"
+            src={photos.portrait.url}
             alt="Potret resmi Prabowo Subianto, 2024"
             width="124"
             height="144"
