@@ -62,6 +62,7 @@ for (const viewport of viewports) {
 
 test("homepage video selector changes media and stops playback", async ({ page }) => {
   await page.goto("/");
+  await expect.poll(() => page.locator(".media-showcase").evaluate((node) => node.closest("astro-island")?.hasAttribute("ssr") ?? true)).toBe(false);
   const choices = page.locator(".showcase-selector-item");
   await expect(choices).toHaveCount(4);
   await choices.nth(1).click();
@@ -98,6 +99,7 @@ test("e-card preview updates without submitting email", async ({ page }) => {
 
 test("webcam clearly marked simulation and camera selection", async ({ page }) => {
   await page.goto("/livewebcam/");
+  await expect.poll(() => page.locator(".webcam-studio").evaluate((node) => node.closest("astro-island")?.hasAttribute("ssr") ?? true)).toBe(false);
   await expect(page.locator(".camera-overlay")).toContainText("BUKAN SIARAN LANGSUNG");
   await page.getByRole("button", { name: /CAM 02/i }).click();
   await expect(page.locator(".camera-choice").nth(1)).toHaveAttribute("aria-pressed", "true");
