@@ -40,3 +40,11 @@ https://pradnyaprameswara.github.io/better-call-prabowo/
 Do not claim the production URL is live until GitHub Pages reports a successful deployment. If the Pages source cannot be set, the workflow may fail at deployment even though its build succeeded.
 
 The original reference used Flash-era media, so functional parity means analogous modern behaviors, not cloning unsupported Flash plugins.
+
+## Published-site smoke test
+
+The Pages workflow now performs a **post-deploy HTTP smoke test** against the URL returned by `actions/deploy-pages`. It verifies the canonical project path, all five public page responses containing the site identity, and the portrait and scales assets. Repeated transient HTTP failures are retried; a permanent missing page or wrong path fails the deployment job.
+
+These checks run **only after a deployment occurs on `main` or a manual workflow dispatch**. CI on feature PRs continues to test generated Pages asset paths and full browser behavior, without treating the already-published old version as evidence for unmerged code.
+
+A successful build alone is not proof of a working public website; inspect the final *deploy* job status after merging this change.

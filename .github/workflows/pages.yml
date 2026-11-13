@@ -52,3 +52,30 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+      - name: Verify published GitHub Pages
+        env:
+          DEPLOYED_URL: ${{ steps.deployment.outputs.page_url }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="${DEPLOYED_URL%/}"
+          if [[ "$root" != "https://pradnyaprameswara.github.io/better-call-prabowo" ]]; then
+            echo "Unexpected Pages deployment URL: $root" >&2
+            exit 1
+          fi
+          for route in "" "testimonials/" "asseenontv/" "ecards/" "livewebcam/"; do
+            url="$root/$route"
+            html=$(curl --fail --silent --show-error --location \
+              --retry 6 --retry-delay 3 --retry-all-errors --max-time 20 "$url")
+            if [[ "$html" != *"Better Call Prabowo"* ]]; then
+              echo "Missing expected site content: $url" >&2
+              exit 1
+            fi
+            echo "Verified: $url"
+          done
+          for image in "images/prabowo/portrait.jpg" "images/scales.svg"; do
+            curl --fail --silent --show-error --location \
+              --retry 6 --retry-delay 3 --retry-all-errors --max-time 20 \
+              --output /dev/null "$root/$image"
+            echo "Verified asset: $image"
+          done
