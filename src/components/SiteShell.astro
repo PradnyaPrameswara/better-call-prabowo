@@ -10,6 +10,7 @@ import "../styles/testimonials.css";
 import "../styles/ecards-webcam.css";
 import "../styles/stage3.css";
 import "../styles/fidelity.css";
+import "../styles/framing.css";
 
 interface Props {
   page: PageId;
@@ -72,9 +73,10 @@ const hasShowcase = page === "asseenontv";
       </div>
       <div class="retro-ad-tile collage-three">
         <span class="ad-billboard-heading">SELAMAT DATANG!</span>
-        <div class="ad-photo">
-          <img src={photos.inaugurationCloseup.url} alt="Prabowo menyampaikan pidato pada pelantikan presiden" width="300" height="160" loading="lazy" />
-          <span class="ad-sticker">WOW!!!</span>
+        <div class="ad-photo ad-type-graphic" aria-hidden="true">
+          <span class="ad-superstar">★</span>
+          <span class="ad-type-heading">WOW!!!</span>
+          <span class="ad-sticker">KLIK!</span>
         </div>
         <strong>WARUNG<br />KOPI PAGI!</strong>
         <small>TEMUKAN CERITA PILIHAN!</small>

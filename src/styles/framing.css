@@ -1,0 +1,65 @@
+/* Preserve complete archival image frames; never crop faces or headwear. */
+.header-portrait {
+  background: linear-gradient(140deg, #f4a900, #ffe650);
+  display: grid;
+  place-items: end center;
+}
+.header-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important;
+  object-position: center bottom !important;
+}
+.sidebar-poster img,
+.media-gallery-promo img,
+.testimonials-gallery .media-gallery-promo img,
+.media-frame img,
+.testimonial-tile .media-frame img,
+.showcase-poster,
+.showcase-selector-image img,
+.ecard-photo img,
+.webcam-camera img,
+.retro-ad-collage .ad-photo img {
+  object-fit: contain !important;
+  object-position: center center !important;
+}
+.sidebar-poster img { background: #343d4e; }
+.media-gallery-promo img { background: #23406c; }
+.media-frame, .showcase-viewport, .showcase-selector-image { background: #28231a; }
+.retro-ad-collage .ad-photo { background: #211d19; }
+.retro-ad-collage .ad-photo img { filter: none; }
+.ecard-photo { background: #192e4b; }
+.ecard-option-mark {
+  display: grid;
+  place-items: center;
+  height: 69px;
+  background: radial-gradient(circle, #fff9b7 0, #f4c230 45%, #b51c06 100%);
+  color: #a90800;
+  -webkit-text-stroke: 1px #fff4aa;
+  font: 900 45px/1 Georgia, serif;
+  text-shadow: 1px 2px 0 #ffffff;
+}
+.showcase-selected-mark {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: repeating-linear-gradient(140deg, #eeb51c, #eeb51c 7px, #fae566 7px, #fae566 14px);
+  color: #b00800;
+  font: 1000 20px/1 "Arial Black", Arial, sans-serif;
+  -webkit-text-stroke: .8px #fff;
+}
+.retro-ad-collage .ad-type-graphic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: radial-gradient(circle at 50% 40%, #f8d62b, #df5a10 55%, #7f2100 95%);
+}
+.retro-ad-collage .ad-superstar { font: 900 56px/1 Georgia, serif; color: #fffcd0; text-shadow: 3px 3px 0 #8f1400; }
+.retro-ad-collage .ad-type-heading { font: 1000 32px/1 Impact, Arial, sans-serif; color: #fff500; text-shadow: 2px 2px 0 #681e00; }
+@media (max-width: 600px) {
+  .header-portrait img { padding: 1px; }
+  .sidebar-poster img { height: 150px; }
+  .retro-ad-collage .ad-type-heading { font-size: 27px; }
+}

@@ -2,6 +2,9 @@ import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 
 const names = [
+  "decorated-portrait.jpg",
+  "cabinet-announcement.jpg",
+  "turkey-speech.jpg",
   "portrait.jpg",
   "inauguration.jpg",
   "inauguration-closeup.jpg",
