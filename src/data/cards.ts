@@ -5,8 +5,8 @@ export const ecardDesigns = [
     id: "nusantara",
     title: "SALAM NUSANTARA!",
     message: "SALAM HANGAT DARI NEGERI SERIBU CERITA!",
-    image: photos.portrait.url,
-    imageAlt: "Potret resmi Prabowo Subianto, 2024",
+    image: photos.whiteHouse.url,
+    imageAlt: "Arsip pertemuan Prabowo dengan Presiden Joe Biden di Gedung Putih",
     theme: "card-red",
   },
   {

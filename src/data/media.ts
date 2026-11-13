@@ -14,6 +14,21 @@ export interface MediaItem {
 const assetUrl = (filename: string) => `${import.meta.env.BASE_URL}images/prabowo/${filename}`;
 
 export const photos = {
+  decoratedPortrait: {
+    url: assetUrl("decorated-portrait.jpg"),
+    source: "https://commons.wikimedia.org/wiki/File:President_Prabowo_Subianto_in_2024_with_decorations.jpg",
+    credit: "Kementerian Sekretariat Negara Republik Indonesia",
+  },
+  cabinetAnnouncement: {
+    url: assetUrl("cabinet-announcement.jpg"),
+    source: "https://commons.wikimedia.org/wiki/File:Prabowo_Subianto_announces_new_cabinet.jpg",
+    credit: "Biro Pers, Media, dan Informasi Sekretariat Presiden",
+  },
+  turkeySpeech: {
+    url: assetUrl("turkey-speech.jpg"),
+    source: "https://commons.wikimedia.org/wiki/File:Prabowo_delivers_Speech_before_Turkish_Parliament.jpg",
+    credit: "BPMI Sekretariat Presiden",
+  },
   portrait: {
     url: assetUrl("portrait.jpg"),
     source: "https://commons.wikimedia.org/wiki/File:Prabowo_Subianto_2024_official_portrait.jpg",
@@ -55,7 +70,7 @@ export const consultations: MediaItem[] = [
   {
     id: "inauguration",
     title: "PIDATO PERDANA!",
-    caption: "Pidato pelantikan 20 Oktober 2024 — dokumentasi asli, bukan adegan parodi.",
+    caption: "Pidato pelantikan 20 Oktober 2024 — dokumentasi peristiwa tersebut.",
     image: photos.inauguration.url,
     imageAlt: "Prabowo berpidato pada pelantikan presiden tahun 2024",
     sourceUrl: "https://www.youtube.com/watch?v=0-WC6xcLghI",
