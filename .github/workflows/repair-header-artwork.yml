@@ -1,0 +1,33 @@
+name: Repair header artwork
+on:
+  pull_request:
+    paths:
+      - scripts/repair-header-artwork.py
+      - .github/workflows/repair-header-artwork.yml
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'fix/16-remove-header-photo-ghosting'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image decoder/encoder
+        run: python -m pip install Pillow==12.0.0
+      - name: Remove duplicate cap layer from AVIF
+        run: python scripts/repair-header-artwork.py
+      - name: Commit restored banner to feature branch
+        run: |
+          git add public/images/header/better-call-prabowo-desktop.avif
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'assets: remove duplicated right portrait from header composition'
+          git push origin HEAD:refs/heads/${{ github.head_ref }}
