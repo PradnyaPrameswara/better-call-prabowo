@@ -6,7 +6,7 @@ A clearly labeled, unofficial **parody** site inspired by the colorful early-200
 
 ## Stack
 
-Astro 7, Tailwind CSS 4, React 19 for interactive islands when needed, TypeScript, shadcn-compatible component configuration, Lucide and pnpm 12. No Radix or `useEffect` required for the foundation.
+Astro 7, Tailwind CSS 4, React 19 for interactive islands when needed, TypeScript, shadcn-compatible component configuration, Vercel UI SDK (headless behaviors), Lucide and pnpm 12. No Radix or `useEffect` required for the foundation.
 
 ## Run locally
 
@@ -18,6 +18,14 @@ pnpm build
 ```
 
 Node.js 22.23.4 or newer.
+
+## Vercel UI SDK
+
+Installed: `@ui-sdk/core@0.1.0-beta.1` and `@ui-sdk/react@0.1.0-beta.1`.
+
+UI SDK is an unstyled behavior/interaction library, **not the Vercel AI SDK**. Its default `web.css` theme is intentionally not imported so the reference website's retro visual design stays intact. The packages are ready for future interactive React islands, but no existing Astro navigation or layout has been rewritten.
+
+See [UI SDK integration notes](docs/ui-sdk.md).
 
 ## Development
 
