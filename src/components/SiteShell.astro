@@ -7,6 +7,7 @@ import "../styles/retro.css";
 import "../styles/media.css";
 import "../styles/testimonials.css";
 import "../styles/ecards-webcam.css";
+import "../styles/stage3.css";
 
 interface Props {
   page: PageId;
@@ -16,11 +17,13 @@ interface Props {
 const { page, title } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const scales = `${base}images/scales.svg`;
+const hasShowcase = page === "consultations" || page === "asseenontv";
 ---
 <BaseLayout title={`${title} | ${siteIdentity.name}`}>
   <a href="#konten" class="skip-link">Langsung ke konten</a>
   <div class="retro-site">
     <header class="retro-header">
+      <div class="header-superline" aria-hidden="true">BETTER CALL PRABOWO · PARODI INDEPENDEN</div>
       <div class="header-portrait">
         <img src={portrait.src} alt={portrait.alt} width="132" height="122" />
       </div>
@@ -35,12 +38,12 @@ const scales = `${base}images/scales.svg`;
       <a href={`${base}#tentang`}>PENGUMUMAN!!! INI ADALAH SITUS PARODI — KLIK DI SINI UNTUK INFO!!!</a>
     </div>
 
-    <div class="retro-upper">
+    <div class:list={["retro-upper", { "media-layout": hasShowcase } ]}>
       <SiteNavigation active={page} />
       <main id="konten" class="retro-main">
         <slot />
       </main>
-      <PromoSidebar />
+      {!hasShowcase && <PromoSidebar />}
     </div>
 
     <section class="retro-welcome" aria-label="Selamat datang">
