@@ -1,0 +1,54 @@
+.ecards-studio, .webcam-studio { padding: 12px 14px 18px; min-height: 384px; }
+.ecard-intro, .webcam-lead { margin: -4px 0 9px; font: 900 12px/1.2 Arial,sans-serif; text-align: center; color: #af1800; }
+.ecard-picker { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 6px; }
+.ecard-option { padding: 4px 2px; border: 3px solid #c18009; background: #fff38f; cursor: pointer; text-align: center; min-width: 0; display: flex; flex-direction: column; align-items: stretch; }
+.ecard-option.is-selected, .ecard-option:hover { border-color: #bd0000; background: #fff9ae; }
+.ecard-option:focus-visible, .ecard-action:focus-visible, .camera-choice:focus-visible { outline: 3px dashed #204ba4; outline-offset: 2px; }
+.ecard-option img { display: block; width: 100%; height: 69px; object-fit: cover; object-position: center 24%; }
+.ecard-option span { font: 900 10px/1.1 Arial,sans-serif; color: #b10900; padding-top: 3px; }
+.ecard-workspace { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0,1fr); gap: 9px; margin-top: 10px; }
+.ecard-preview { display: flex; flex-direction: column; align-items: center; min-width: 0; padding: 12px 8px 9px; border: 4px ridge #fff3ad; min-height: 355px; text-align: center; color: #fffbb6; box-shadow: 2px 2px 0 #7e3200; }
+.ecard-preview.card-red { background: radial-gradient(circle at 50% 25%, #fe640b, #bc0600 70%); }
+.ecard-preview.card-gold { background: radial-gradient(circle at 50% 25%, #fee846, #b77100 80%); color: #771d00; }
+.ecard-preview.card-blue { background: radial-gradient(circle at 50% 25%, #417fc6, #0b205a 85%); }
+.ecard-preview.card-green { background: radial-gradient(circle at 50% 25%, #30a16b, #06472e 85%); }
+.ecard-preview > strong { font: 1000 27px/1.05 Arial,sans-serif; color: #fffbd8; -webkit-text-stroke: .7px #9e2300; text-shadow: 2px 3px 0 #5b1c00; }
+.ecard-photo { position: relative; width: 100%; max-width: 230px; margin: 9px 0; height: 154px; overflow: hidden; border: 4px solid #fff3ae; }
+.ecard-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+.ecard-photo span { position: absolute; bottom: 4px; left: 3px; right: 3px; font: 900 12px/1.2 Arial,sans-serif; color: #fff; text-shadow: 1px 2px 0 #9f1000; }
+.ecard-preview p { margin: 3px 0; font: 900 13px/1.3 Arial,sans-serif; }
+.ecard-preview .ecard-custom-message { font-size: 12px; overflow-wrap: anywhere; }
+.ecard-preview > small { margin-top: auto; padding-top: 8px; font-weight: 900; overflow-wrap: anywhere; }
+.ecard-unofficial { font: 900 9px/1.1 Arial,sans-serif; margin-top: 8px; }
+.ecard-form { padding: 10px 9px; background: linear-gradient(#fff179,#ffbc11); border: 2px solid #bd5b00; box-shadow: 1px 2px 0 #663500; display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.ecard-form h2 { margin:0 0 4px; font: 900 22px/1 Arial,sans-serif; color: #d50e00; text-align:center; }
+.ecard-form label { font: 900 12px/1.1 Arial,sans-serif; }
+.ecard-form input, .ecard-form textarea { width: 100%; min-width: 0; border: 2px solid #8c3700; background: #fffce2; padding: 6px; border-radius: 0; font-size: 12px; }
+.ecard-form input:focus-visible, .ecard-form textarea:focus-visible { outline: 2px solid #174295; }
+.ecard-action { background: linear-gradient(#df2100,#a50900); color: #fff8b6; border: 2px solid #fff5aa; cursor: pointer; font: 900 12px/1.2 Arial,sans-serif; padding: 7px; box-shadow: 1px 2px 0 #642e00; }
+.ecard-action.secondary { background: linear-gradient(#fff4a6,#ffa81c); color: #7e2500; border-color: #a95700; }
+.ecard-copy-status { margin: 0; min-height: 1em; font:900 11px/1.3 Arial,sans-serif; color: #831b00; }
+.ecard-form-note { margin:0; font:700 10px/1.3 Arial,sans-serif; }
+.webcam-camera { position: relative; width:100%; height: 294px; overflow:hidden; background:#060b0a; border: 9px ridge #777; }
+.webcam-camera img { width:100%; height:100%; object-fit:cover; object-position:center 40%; display:block; filter:grayscale(.92) contrast(1.25) brightness(.7); }
+.webcam-camera::after { content:""; pointer-events:none; position:absolute; inset:0; background:repeating-linear-gradient(to bottom,transparent 0 4px,#131a1880 4px 5px); }
+.camera-rec { position:absolute; top:10px; left:10px; background:#161e1acc; padding:4px 7px; color:#ff4444; font:900 14px monospace; z-index:1; }
+.camera-overlay { position:absolute; bottom:10px; left:10px; right:10px; color:#e0f7df; text-shadow:0 1px 5px #000; font:900 13px monospace; z-index:1; }
+.camera-selector { display:flex; gap:8px; justify-content:center; margin:10px 0; }
+.camera-choice { border:3px solid #fce54b; padding:8px 12px; background:#2457a3; color:#fff; font:900 12px Arial,sans-serif; cursor:pointer; }
+.camera-choice.active { background:#d01000; }
+.webcam-caption { margin:6px 0; color:#632400; font:700 12px/1.3 Arial,sans-serif; text-align:center; }
+.webcam-caption a { color:#a61100; text-decoration:underline; }
+@media(max-width:600px) {
+  .ecards-studio,.webcam-studio { padding:12px 9px; }
+  .ecard-picker { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .ecard-workspace { grid-template-columns:1fr; }
+  .webcam-camera { height:clamp(176px,50vw,290px); border-width:5px; }
+  .camera-selector { flex-wrap:wrap; }
+  .camera-choice { flex:1 1 130px; }
+}
+@media print {
+  body * { visibility:hidden; }
+  .ecard-preview, .ecard-preview * { visibility:visible; }
+  .ecard-preview { position:absolute; left:0; top:0; width:600px; min-height:400px; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+}

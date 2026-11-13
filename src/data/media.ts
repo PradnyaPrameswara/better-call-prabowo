@@ -11,39 +11,41 @@ export interface MediaItem {
   objectPosition?: string;
 }
 
+const assetUrl = (filename: string) => `${import.meta.env.BASE_URL}images/prabowo/${filename}`;
+
 export const photos = {
   portrait: {
-    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Prabowo_Subianto_2024_official_portrait.jpg/500px-Prabowo_Subianto_2024_official_portrait.jpg",
+    url: assetUrl("portrait.jpg"),
     source: "https://commons.wikimedia.org/wiki/File:Prabowo_Subianto_2024_official_portrait.jpg",
     credit: "Darwis Triadi / Kementerian Sekretariat Negara",
   },
   inauguration: {
-    url: "https://upload.wikimedia.org/wikipedia/commons/6/64/Prabowo_Subianto_delivers_first_speech_as_President_of_Indonesia_01.jpg",
+    url: assetUrl("inauguration.jpg"),
     source: "https://commons.wikimedia.org/wiki/File:Prabowo_Subianto_delivers_first_speech_as_President_of_Indonesia_01.jpg",
     credit: "Rahmat / Sekretariat Kabinet RI",
   },
   inaugurationCloseup: {
-    url: "https://upload.wikimedia.org/wikipedia/commons/8/82/Prabowo_Subianto_delivers_first_speech_as_President_of_Indonesia_04.jpg",
+    url: assetUrl("inauguration-closeup.jpg"),
     source: "https://commons.wikimedia.org/wiki/File:Prabowo_Subianto_delivers_first_speech_as_President_of_Indonesia_04.jpg",
     credit: "Sekretariat Kabinet RI",
   },
   g20: {
-    url: "https://upload.wikimedia.org/wikipedia/commons/6/6a/Prabowo_in_G20.jpg",
+    url: assetUrl("g20.jpg"),
     source: "https://commons.wikimedia.org/wiki/File:Prabowo_in_G20.jpg",
     credit: "BPMI Setpres / Laily Rachev",
   },
   unitedNations: {
-    url: "https://upload.wikimedia.org/wikipedia/commons/6/63/Prabowo_give_speech_in_UN_General_Assembly_2025.jpg",
+    url: assetUrl("united-nations.jpg"),
     source: "https://commons.wikimedia.org/wiki/File:Prabowo_give_speech_in_UN_General_Assembly_2025.jpg",
     credit: "BPMI Setpres",
   },
   meeting: {
-    url: "https://upload.wikimedia.org/wikipedia/commons/4/40/Prabowo_and_Jokowi_in_2024.jpg",
+    url: assetUrl("meeting.jpg"),
     source: "https://commons.wikimedia.org/wiki/File:Prabowo_and_Jokowi_in_2024.jpg",
     credit: "BPMI Setpres / Muchlis Jr",
   },
   whiteHouse: {
-    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Prabowo_Subianto%2C_President_of_Indonesia_meets_United_States_President_Joe_Biden_on_November_12%2C_2024_in_the_White_House_Oval_Office_%28cropped%29.jpg/960px-Prabowo_Subianto%2C_President_of_Indonesia_meets_United_States_President_Joe_Biden_on_November_12%2C_2024_in_the_White_House_Oval_Office_%28cropped%29.jpg",
+    url: assetUrl("white-house.jpg"),
     source: "https://commons.wikimedia.org/wiki/File:Prabowo_Subianto,_President_of_Indonesia_meets_United_States_President_Joe_Biden_on_November_12,_2024_in_the_White_House_Oval_Office_(cropped).jpg",
     credit: "Oliver Contreras / The White House",
   },

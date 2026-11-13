@@ -11,7 +11,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "media:sync": "node scripts/import-photos.mjs",
+    "media:verify": "node scripts/verify-media.mjs"
   },
   "dependencies": {
     "astro": "^7.4.11",
