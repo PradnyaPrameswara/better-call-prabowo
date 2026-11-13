@@ -23,3 +23,17 @@ Video berasal dari kanal resmi dan ditautkan tanpa diubah atau ditambahi ucapan:
 `src/data/media.ts` adalah sumber tunggal daftar URL foto, kredit, dan media. Jangan membuat ucapan/testimonial palsu yang diatribusi kepada tokoh nyata. Link video resmi dan foto arsip tetap terpisah dari teks komedi situs. Bila provider menghalangi embed video, tampilkan tautan sumber.
 
 Semua JPEG dikumpulkan melalui `scripts/import-photos.mjs`; untuk mengisi ulang hanya file yang belum ada, jalankan `pnpm media:sync`. Tidak diperlukan API key. Perubahan gambar selanjutnya harus disertai pemeriksaan atribusi, ukuran, dan asal.
+
+## Foto tambahan dan pembagian per halaman
+
+Penyesuaian visual ini menambahkan tiga gambar dokumentasi dari Wikimedia Commons:
+
+- `decorated-portrait.jpg`: [potret resmi dengan tanda kehormatan](https://commons.wikimedia.org/wiki/File:President_Prabowo_Subianto_in_2024_with_decorations.jpg), Kementerian Sekretariat Negara (dipakai pada sidebar, berbeda dari foto header)
+- `cabinet-announcement.jpg`: [pengumuman Kabinet Merah Putih](https://commons.wikimedia.org/wiki/File:Prabowo_Subianto_announces_new_cabinet.jpg), Sekretariat Presiden (iklan pertama)
+- `turkey-speech.jpg`: [pidato di Parlemen Turki](https://commons.wikimedia.org/wiki/File:Prabowo_delivers_Speech_before_Turkish_Parliament.jpg), BPMI Sekretariat Presiden (iklan kedua)
+
+Foto ketiga pada deretan iklan diganti grafis tipografi orisinal agar tidak mengulang foto salah satu thumbnail. Kartu e-card memakai ikon berbeda untuk pilihan kartu, sehingga foto besar dalam pratinjau tidak muncul dua kali pada layar yang sama. Pemutar TV menampilkan label `ON AIR` pada thumbnail yang sedang diputar untuk menghindari pengulangan gambar secara bersamaan.
+
+Semua foto menggunakan `object-fit: contain` di elemen presentasinya untuk mempertahankan keseluruhan foto, termasuk peci, wajah, latar, dan lencana. Browser QA sekarang memeriksa ketidakberulangan URL gambar dan properti crop untuk setiap halaman di lima viewport. Foto arsip tetap menjadi dokumentasi peristiwa asli; slogan adalah tulisan kreatif situs, bukan kutipan dari Presiden.
+
+Sumber foto tambahan dari Wikimedia Commons menandai publikasi pemerintahan sebagai domain publik di Indonesia sesuai Pasal 43 UU Hak Cipta. Tinjau kembali persyaratan terkait martabat subjek untuk penggunaan lain.
