@@ -40,3 +40,9 @@ See [asset provenance](docs/asset-inventory.md) and [curated photo/video sources
 See [Stage 3 parity notes](docs/stage3-parity.md) and [browser/deployment instructions](docs/browser-pages.md).
 
 Reference: https://bettercallsaul.amc.com/
+
+## Live deployment checks
+
+GitHub Pages is configured in **Settings → Pages → GitHub Actions**. Every `main` push builds the static project and deploys it; a post-deploy check then verifies all five pages and key assets at https://pradnyaprameswara.github.io/better-call-prabowo/.
+
+Consult `docs/browser-pages.md` for browser screenshot QA and published-site checks.
