@@ -24,4 +24,9 @@ for (const name of names) {
   total += contents.length;
 }
 
-process.stdout.write(`Verified ${names.length} JPEG media files (${total} bytes)\n`);
+const sealUrl = new URL("../public/images/presidential-seal-gold.svg", import.meta.url);
+const seal = await readFile(sealUrl, "utf8");
+if (!seal.includes("<svg") || seal.length < 10000 || /<script\b/i.test(seal)) {
+  throw new Error("Missing or invalid presidential seal SVG");
+}
+process.stdout.write(`Verified ${names.length} JPEG media files (${total} bytes) and the presidential seal SVG\n`);

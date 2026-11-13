@@ -79,6 +79,50 @@ for (const viewport of viewports) {
   }
 }
 
+test("news panel alignment, readable layout, and authentic crest image", async ({ page }) => {
+  for (const viewport of viewports) {
+    await page.setViewportSize(viewport);
+    await page.goto("/");
+    const emblem = page.locator(".message-emblem img");
+    await expect(emblem).toBeVisible();
+    await expect(emblem).toHaveAttribute("alt", /Cap Kepresidenan/);
+    await expect.poll(() => emblem.evaluate((img) => (img as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+    await expect(page.locator(".message-disclaimer")).toContainText("Bukan situs resmi");
+    const metrics = await page.evaluate(() => {
+      const selectors = [
+        ".retro-welcome h2",
+        ".retro-ad-tile strong",
+        ".retro-ad-collage .ad-billboard-heading",
+        ".retro-ad-tile small",
+        ".retro-message h2",
+        ".retro-message .message-copy p",
+      ];
+      const overflow = selectors.flatMap((selector) =>
+        Array.from(document.querySelectorAll(selector)).flatMap((item) => {
+          const element = item as HTMLElement;
+          const x = element.scrollWidth > element.clientWidth + 3;
+          const y = element.scrollHeight > element.clientHeight + 3;
+          return x || y ? [`${selector} (${element.scrollWidth}/${element.clientWidth}, ${element.scrollHeight}/${element.clientHeight})`] : [];
+        })
+      );
+      const section = document.querySelector(".retro-message")!.getBoundingClientRect();
+      const emblem = document.querySelector(".message-emblem")!.getBoundingClientRect();
+      const title = document.querySelector(".message-copy h2")!.getBoundingClientRect();
+      return {
+        overflow,
+        sectionCenter: section.left + section.width / 2,
+        emblemCenter: emblem.left + emblem.width / 2,
+        titleCenter: title.left + title.width / 2,
+        imageCount: document.querySelectorAll(".retro-site img").length,
+      };
+    });
+    expect(metrics.overflow, `No clipped headlines at ${viewport.width}px`).toEqual([]);
+    expect(Math.abs(metrics.sectionCenter - metrics.emblemCenter)).toBeLessThan(4);
+    expect(Math.abs(metrics.sectionCenter - metrics.titleCenter)).toBeLessThan(4);
+    expect(metrics.imageCount).toBeGreaterThanOrEqual(7);
+  }
+});
+
 test("homepage reproduces four consultation thumbnails and opens source media", async ({ page }) => {
   await page.goto("/");
   await expect.poll(() => page.locator(".media-tiles").evaluate((node) => node.closest("astro-island")?.hasAttribute("ssr") ?? true)).toBe(false);

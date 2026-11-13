@@ -1,0 +1,197 @@
+/* Improve text legibility and prevent decorative text from clipping at all supported widths. */
+.retro-site { overflow: clip; }
+
+.retro-welcome {
+  height: auto;
+  min-height: 108px;
+  padding: 16px clamp(12px, 3vw, 32px);
+}
+.retro-welcome h2 {
+  display: block;
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  font-size: clamp(29px, 5vw, 51px);
+  line-height: 1.11;
+  letter-spacing: 0;
+  white-space: normal;
+  text-wrap: balance;
+  overflow-wrap: normal;
+  word-break: normal;
+  color: #823000;
+  -webkit-text-stroke: 1.1px #fff2c5;
+  text-shadow: 1px 2px 0 #fff0a4, 2px 3px 0 #6c2d05;
+}
+
+.retro-ad-grid.retro-ad-collage { align-items: stretch; }
+.retro-ad-collage .retro-ad-tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-width: 0;
+  height: auto;
+  min-height: 278px;
+  padding: 0;
+}
+.retro-ad-collage .ad-billboard-heading {
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  flex: none;
+  min-height: 34px;
+  margin: 0;
+  padding: 7px 12px;
+  color: #fff9df;
+  font: italic 900 clamp(12px, 1.45vw, 16px)/1.2 Arial, sans-serif;
+  letter-spacing: .2px;
+  text-align: center;
+  text-shadow: 0 1px 1px #08162b;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+.retro-ad-collage .ad-photo {
+  flex: none;
+  height: 108px;
+  margin: 0;
+}
+.retro-ad-collage .retro-ad-tile strong {
+  box-sizing: border-box;
+  display: grid;
+  align-content: center;
+  flex: 1 0 auto;
+  min-height: 96px;
+  width: 100%;
+  margin: 0;
+  padding: 13px 14px 8px;
+  color: #fff5d5;
+  font: 900 clamp(22px, 2.4vw, 30px)/1.12 Impact, "Arial Black", Arial, sans-serif;
+  letter-spacing: 0;
+  -webkit-text-stroke: 0;
+  text-shadow: 0 2px 1px #351409;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: normal;
+  text-wrap: balance;
+}
+.retro-ad-collage .collage-one strong { color: #fff2bb; }
+.retro-ad-collage .collage-two strong { color: #fff5cb; }
+.retro-ad-collage .collage-three strong { color: #ffffff; }
+.retro-ad-collage .retro-ad-tile small {
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 100%;
+  min-height: 38px;
+  margin-top: auto;
+  padding: 7px 12px 9px;
+  color: #fff8dd;
+  font: 800 clamp(10px, 1vw, 12px)/1.35 Arial, sans-serif;
+  text-align: center;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+.retro-message {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 240px;
+  padding: 26px clamp(16px, 4vw, 48px);
+  text-align: center;
+  background: linear-gradient(180deg, #fff0a9 0%, #fbd34e 100%);
+  border-top: 4px solid #a74d07;
+  color: #54240c;
+}
+.retro-message .message-emblem {
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 94px;
+  height: 94px;
+  padding: 8px;
+  margin: 0 auto 2px;
+  border: 2px solid #925600;
+  border-radius: 50%;
+  background: #fffbea;
+  box-shadow: 0 2px 0 #9b6b16, inset 0 0 0 3px #f4da8b;
+  color: #86520b;
+}
+.retro-message .message-emblem img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 74px;
+  max-height: 74px;
+  object-fit: contain;
+  object-position: center;
+}
+.retro-message .message-copy {
+  box-sizing: border-box;
+  width: min(100%, 790px);
+  margin: 0 auto;
+  padding: 0;
+}
+.retro-message h2 {
+  margin: 0 auto 8px;
+  font: 900 clamp(23px, 3.6vw, 37px)/1.15 "Arial Black", Arial, sans-serif;
+  color: #7f1d0d;
+  letter-spacing: 0;
+  text-align: center;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+.retro-message .message-copy p {
+  margin: 0 auto;
+  max-width: 690px;
+  font: 700 clamp(14px, 1.65vw, 18px)/1.5 Arial, sans-serif;
+  color: #45230e;
+  text-align: center;
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+}
+.retro-message .message-disclaimer {
+  margin: 4px 0 0;
+  max-width: 760px;
+  color: #602e17;
+  font: 700 11px/1.4 Arial, sans-serif;
+  text-align: center;
+}
+
+/* Improve text contrast in navigation, media titles, cards and old-browser adverts. */
+.nav-links a { color: #50210b; }
+.nav-links a[aria-current="page"] { color: #811f0a; }
+.media-title, .video-title { color: #8f210a; text-shadow: none; }
+.sidebar-heading, .media-tiles .panel-heading, .showcase-selector h1 { color: #941800; }
+.retro-footer { color: #421c0c; }
+.retro-footer a { color: #791c0e; }
+
+@media (max-width: 820px) {
+  .retro-welcome { min-height: 94px; padding: 15px 14px; }
+  .retro-welcome h2 { font-size: clamp(28px, 5.4vw, 43px); }
+  .retro-ad-collage .retro-ad-tile { min-height: 275px; }
+  .retro-ad-collage .retro-ad-tile strong { font-size: clamp(20px, 2.8vw, 27px); }
+}
+@media (max-width: 600px) {
+  .retro-welcome { min-height: 84px; padding: 13px 12px; }
+  .retro-welcome h2 { font-size: clamp(24px, 5.9vw, 33px); line-height: 1.14; }
+  .retro-ad-collage .retro-ad-tile { min-height: 272px; }
+  .retro-ad-collage .ad-billboard-heading { padding: 7px 5px; font-size: 12px; }
+  .retro-ad-collage .retro-ad-tile strong { min-height: 100px; padding: 12px 7px 8px; font-size: clamp(18px, 4.6vw, 25px); line-height: 1.14; }
+  .retro-ad-collage .retro-ad-tile small { padding: 8px 5px; }
+  .retro-message { min-height: 0; padding: 24px 16px; gap: 9px; }
+  .retro-message .message-emblem { width: 80px; height: 80px; padding: 7px; }
+  .retro-message .message-emblem img { max-width: 63px; max-height: 63px; }
+  .retro-message h2 { font-size: clamp(22px, 5.5vw, 30px); line-height: 1.18; }
+  .retro-message .message-copy p { font-size: 14px; line-height: 1.5; }
+}
+@media (max-width: 360px) {
+  .retro-ad-collage .retro-ad-tile strong { font-size: 18px; }
+  .retro-welcome h2 { font-size: 23px; }
+  .retro-message h2 { font-size: 21px; }
+}

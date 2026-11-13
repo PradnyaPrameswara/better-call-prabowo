@@ -37,3 +37,12 @@ Foto ketiga pada deretan iklan diganti grafis tipografi orisinal agar tidak meng
 Semua foto menggunakan `object-fit: contain` di elemen presentasinya untuk mempertahankan keseluruhan foto, termasuk peci, wajah, latar, dan lencana. Browser QA sekarang memeriksa ketidakberulangan URL gambar dan properti crop untuk setiap halaman di lima viewport. Foto arsip tetap menjadi dokumentasi peristiwa asli; slogan adalah tulisan kreatif situs, bukan kutipan dari Presiden.
 
 Sumber foto tambahan dari Wikimedia Commons menandai publikasi pemerintahan sebagai domain publik di Indonesia sesuai Pasal 43 UU Hak Cipta. Tinjau kembali persyaratan terkait martabat subjek untuk penggunaan lain.
+
+
+## Presidential seal illustration (news panel)
+
+Source: [Indonesian Presidential Seal gold.svg — Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Indonesian_Presidential_Seal_gold.svg) by Gunkarta, 2011. The source describes it as the **seal of the President of Indonesia**, not a separate Sekretariat Presiden logo. Retain that distinction in UI labels.
+
+The unmodified vector is stored at `public/images/presidential-seal-gold.svg`. It is used **only as an archival illustration** with an explicit near-icon notice that this is not an official site. It does not signal endorsement, institutional affiliation, a presidential service or a government message.
+
+The file is indicated as public domain in Indonesia under relevant national provisions. Official insignia may still have use restrictions separate from copyright. Preserve attribution and avoid presenting this project as a government page.
