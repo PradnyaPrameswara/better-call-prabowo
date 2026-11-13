@@ -239,6 +239,29 @@ test("webcam clearly marked simulation and camera selection", async ({ page }) =
   await expect(page.locator(".webcam-caption").first()).toContainText("Gedung Putih");
 });
 
+test("header artwork contains no duplicated right-cap silhouette", async ({ page }) => {
+  await page.goto("/");
+  const pixels = await page.locator(".retro-banner-picture img").evaluate((image) => {
+    const img = image as HTMLImageElement;
+    const canvas = document.createElement("canvas");
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    const ctx = canvas.getContext("2d")!;
+    ctx.drawImage(img, 0, 0);
+    const sample = (x: number, y: number) =>
+      Array.from(ctx.getImageData(x, y, 1, 1).data).slice(0, 3);
+    return {
+      leftOfHat: sample(995, 15),
+      rightOfHat: sample(1125, 12),
+    };
+  });
+  for (const [location, rgb] of Object.entries(pixels)) {
+    expect(rgb[0], `${location}: clean orange-red header stripe`).toBeGreaterThan(180);
+    expect(rgb[1], `${location}: no black ghost or yellow copied from photo`).toBeLessThan(135);
+    expect(rgb[2], `${location}: preserve red/orange palette`).toBeLessThan(85);
+  }
+});
+
 test("full banner remains intact on both sides of the responsive breakpoint", async ({ page }) => {
   for (const width of [599, 600, 601, 820, 821, 960]) {
     await page.setViewportSize({ width, height: 850 });
