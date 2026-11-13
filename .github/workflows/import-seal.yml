@@ -1,0 +1,31 @@
+name: Import credited presidential seal
+on:
+  pull_request:
+    paths:
+      - scripts/import-presidential-seal.mjs
+      - .github/workflows/import-seal.yml
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'fix/13-layout-emblem-assets'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.23.4"
+      - name: Import and validate original Wikimedia SVG
+        run: node scripts/import-presidential-seal.mjs
+      - name: Commit credited seal asset
+        run: |
+          git add public/images/presidential-seal-gold.svg
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'assets: add presidential seal archival SVG'
+          git push origin HEAD:refs/heads/${{ github.head_ref }}
