@@ -14,7 +14,7 @@ export default function ECardStudio() {
 
   function sendEmail(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const subject = encodeURIComponent(`E-CARD PARODI: ${card.title}`);
+    const subject = encodeURIComponent(`E-CARD SPESIAL: ${card.title}`);
     const body = encodeURIComponent(cardText);
     const recipient = encodeURIComponent(to.trim()).replace(/%40/gi, "@");
     window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
@@ -32,7 +32,7 @@ export default function ECardStudio() {
   return (
     <section className="ecards-studio">
       <h1 className="panel-heading">KIRIM E-CARD!</h1>
-      <p className="ecard-intro">EMPAT KARTU JADUL BUATAN PENGGEMAR — PILIH SATU!</p>
+      <p className="ecard-intro">PILIH KARTU SPESIALMU! KIRIM SAPAAN SEKARANG!</p>
       <div className="ecard-picker" aria-label="Pilih desain kartu">
         {ecardDesigns.map((design) => (
           <Button
@@ -42,7 +42,7 @@ export default function ECardStudio() {
             className={`ecard-option ${design.id === selectedId ? "is-selected" : ""}`}
             aria-pressed={design.id === selectedId}
           >
-            <img src={design.image} alt={design.imageAlt} width="108" height="70" loading="lazy" />
+            <span className="ecard-option-mark" aria-hidden="true">★</span>
             <span>{design.title}</span>
           </Button>
         ))}
@@ -57,7 +57,7 @@ export default function ECardStudio() {
           <p>{card.message}</p>
           {message.trim() && <p className="ecard-custom-message">{message.trim()}</p>}
           <small>{salutation}</small>
-          <span className="ecard-unofficial">PARODI · BUKAN PESAN RESMI</span>
+          <span className="ecard-unofficial">KARTU KREASI PENGGEMAR</span>
         </div>
         <form className="ecard-form" onSubmit={sendEmail}>
           <h2>ISI KARTUMU!</h2>

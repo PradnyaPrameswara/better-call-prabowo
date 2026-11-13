@@ -6,7 +6,7 @@ const { active } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 <nav class="retro-nav" aria-label="Navigasi utama">
-  <div class="nav-sticker" aria-hidden="true">MENU UTAMA!</div>
+  <div class="nav-sticker" aria-hidden="true">MENU PILIHAN!</div>
   <ul class="nav-links">
     {navigation.map((item) => (
       <li>
@@ -17,8 +17,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
     ))}
   </ul>
   <div class="nav-promo" aria-hidden="true">
-    <span>INDONESIA!</span>
+    <span>KABAR TERBARU!</span>
     <strong>WOW!</strong>
-    <small>RETRO WEB!</small>
+    <small>KLIK DI SINI!</small>
   </div>
 </nav>

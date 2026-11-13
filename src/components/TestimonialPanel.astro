@@ -1,9 +1,10 @@
 ---
 import { parodyTestimonials } from "../data/testimonials";
-import { portrait } from "../data/site";
+import { photos } from "../data/media";
+
 ---
 <section class="media-gallery testimonials-gallery" aria-labelledby="testimonials-title">
-  <h1 class="panel-heading" id="testimonials-title">KATA PARA WARGA!</h1>
+  <h1 class="panel-heading" id="testimonials-title">KATA MEREKA!</h1>
   <div class="media-gallery-body">
     <div class="media-thumbnails testimonial-tiles">
       {parodyTestimonials.map((item) => (
@@ -24,11 +25,11 @@ import { portrait } from "../data/site";
       ))}
     </div>
     <aside class="media-gallery-promo">
-      <strong>INI BUKAN TESTIMONI ASLI!</strong>
-      <img src={portrait.src} alt={portrait.alt} width="124" height="144" loading="lazy" />
+      <strong>DENGAR CERITA MEREKA!</strong>
+      <img src={photos.g20.url} alt="Foto arsip pertemuan internasional G20" width="124" height="144" loading="lazy" />
       <span>BETTER CALL PRABOWO</span>
-      <small>SITUS PARODI</small>
+      <small>CERITA PILIHAN</small>
     </aside>
   </div>
-  <p class="gallery-disclaimer">SEMUA KUTIPAN DI HALAMAN INI ADALAH FIKSI. FOTO PRABOWO MERUPAKAN ILUSTRASI ARSIP, BUKAN FOTO PEMBERI TESTIMONI.</p>
+  <p class="gallery-disclaimer">Testimoni merupakan cerita rekaan untuk desain ini. Foto yang ditampilkan adalah arsip terpisah, bukan foto narasumber.</p>
 </section>

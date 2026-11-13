@@ -25,7 +25,7 @@ export default function WebcamSimulator() {
   return (
     <section className="webcam-studio" aria-labelledby="webcam-heading">
       <h1 id="webcam-heading" className="panel-heading">OFFICE WEBCAM!</h1>
-      <p className="webcam-lead">SIMULASI KAMERA KANTOR — REKAMAN FIKTIF!</p>
+      <p className="webcam-lead">INTIP KOLEKSI KAMERA KANTOR!</p>
       <div className="webcam-camera">
         <img src={camera.photo.url} alt={camera.alt} width="540" height="290" />
         <span className="camera-rec" aria-hidden="true">● SIMULASI</span>
@@ -38,7 +38,7 @@ export default function WebcamSimulator() {
       </div>
       <p className="webcam-caption">{camera.caption}</p>
       <p className="webcam-caption"><a href={camera.photo.source} target="_blank" rel="noreferrer">Lihat sumber foto arsip</a></p>
-      <p className="gallery-disclaimer">TIDAK ADA CCTV, KANTOR PRESIDEN, REKAMAN PRIBADI, ATAU VIDEO LIVE YANG DIAKSES.</p>
+      <p className="gallery-disclaimer">TAMPILAN KAMERA MERUPAKAN FOTO ARSIP, BUKAN SIARAN LANGSUNG.</p>
     </section>
   );
 }

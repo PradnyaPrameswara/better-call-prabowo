@@ -3,12 +3,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import SiteNavigation from "./SiteNavigation.astro";
 import PromoSidebar from "./PromoSidebar.astro";
 import { portrait, siteIdentity, type PageId } from "../data/site";
+import { photos } from "../data/media";
 import "../styles/retro.css";
 import "../styles/media.css";
 import "../styles/testimonials.css";
 import "../styles/ecards-webcam.css";
 import "../styles/stage3.css";
 import "../styles/fidelity.css";
+import "../styles/framing.css";
 
 interface Props {
   page: PageId;
@@ -23,7 +25,7 @@ const hasShowcase = page === "asseenontv";
   <a href="#konten" class="skip-link">Langsung ke konten</a>
   <div class="retro-site">
     <header class="retro-header">
-      <div class="header-superline" aria-hidden="true">BETTER CALL PRABOWO · PARODI INDEPENDEN</div>
+      <div class="header-superline" aria-hidden="true">BUTUH JAWABAN? BETTER CALL PRABOWO!</div>
       <div class="header-portrait">
         <img src={portrait.src} alt={portrait.alt} width="132" height="122" />
       </div>
@@ -35,7 +37,7 @@ const hasShowcase = page === "asseenontv";
     </header>
 
     <div class="retro-announcement">
-      <a href={`${base}#tentang`}>PENGUMUMAN!!! INI ADALAH SITUS PARODI — KLIK DI SINI UNTUK INFO!!!</a>
+      <a href="#konten">MAU LIHAT VIDEONYA? KLIK DI SINI SEKARANG!!!</a>
     </div>
 
     <div class:list={["retro-upper", { "media-layout": hasShowcase } ]}>
@@ -47,50 +49,51 @@ const hasShowcase = page === "asseenontv";
     </div>
 
     <section class="retro-welcome" aria-label="Selamat datang">
-      <h2>SELAMAT DATANG, WARGA!</h2>
+      <h2>SELAMAT DATANG, PENCARI SENSASI!</h2>
     </section>
 
-    <section class="retro-ad-grid retro-ad-collage" aria-label="Iklan fiktif bernuansa retro">
+    <section class="retro-ad-grid retro-ad-collage" aria-label="Iklan bergaya retro">
       <div class="retro-ad-tile collage-one">
         <span class="ad-billboard-heading">KABAR HARI INI!!!</span>
         <div class="ad-photo">
-          <img src={`${base}images/prabowo/portrait.jpg`} alt="Potret arsip Presiden Prabowo Subianto" width="300" height="160" loading="lazy" />
+          <img src={photos.cabinetAnnouncement.url} alt="Foto arsip Prabowo mengumumkan Kabinet Merah Putih" width="300" height="160" loading="lazy" />
           <span class="ad-sticker">EKSKLUSIF!</span>
         </div>
         <strong>INFO<br />NUSANTARA!</strong>
-        <small>BUKAN BERITA ATAU IKLAN RESMI</small>
+        <small>LAGI RAMAI DI MANA-MANA!</small>
       </div>
       <div class="retro-ad-tile collage-two">
         <span class="ad-billboard-heading">ADA CERITA BARU?</span>
         <div class="ad-photo">
-          <img src={`${base}images/prabowo/meeting.jpg`} alt="Foto arsip pertemuan Prabowo dan Joko Widodo" width="300" height="160" loading="lazy" />
-          <span class="ad-sticker">PARODI!</span>
+          <img src={photos.turkeySpeech.url} alt="Prabowo berpidato di Parlemen Turki" width="300" height="160" loading="lazy" />
+          <span class="ad-sticker">BACA!!!</span>
         </div>
         <strong>OBROLAN<br />WARGA!</strong>
-        <small>FOTO ARSIP · CERITA FIKTIF</small>
+        <small>CERITA PANAS HARI INI!</small>
       </div>
       <div class="retro-ad-tile collage-three">
         <span class="ad-billboard-heading">SELAMAT DATANG!</span>
-        <div class="ad-photo">
-          <img src={`${base}images/prabowo/g20.jpg`} alt="Foto arsip Presiden Prabowo dalam pertemuan G20" width="300" height="160" loading="lazy" />
-          <span class="ad-sticker">WOW!!!</span>
+        <div class="ad-photo ad-type-graphic" aria-hidden="true">
+          <span class="ad-superstar">★</span>
+          <span class="ad-type-heading">WOW!!!</span>
+          <span class="ad-sticker">KLIK!</span>
         </div>
         <strong>WARUNG<br />KOPI PAGI!</strong>
-        <small>BUKAN PROMOSI PEMERINTAH</small>
+        <small>TEMUKAN CERITA PILIHAN!</small>
       </div>
     </section>
 
     <section class="retro-message" id="tentang">
       <div class="message-emblem" aria-hidden="true">★</div>
       <div>
-        <h2>PERHATIAN!!! INI WEBSITE PARODI!</h2>
-        <p>Seluruh iklan dan cerita di halaman ini bersifat fiktif untuk hiburan. Tidak berafiliasi dengan Presiden Prabowo, pemerintah Indonesia, atau AMC.</p>
+        <h2>JANGAN LEWATKAN BERITANYA!!!</h2>
+        <p>Lihat koleksi video, foto arsip, dan kartu digital dengan gaya iklan televisi yang penuh warna!</p>
       </div>
     </section>
 
     <footer class="retro-footer">
       <p><a href={base}>Beranda</a><span aria-hidden="true"> · </span><a href="https://bettercallsaul.amc.com/" target="_blank" rel="noreferrer">Referensi desain AMC</a><span aria-hidden="true"> · </span><a href={portrait.source} target="_blank" rel="noreferrer">Kredit foto</a></p>
-      <p>© 2026 Better Call Prabowo — parodi independen, bukan situs resmi atau kampanye.</p>
+      <p>© 2026 Better Call Prabowo — proyek kreatif tidak resmi; tidak berafiliasi dengan Prabowo Subianto, Pemerintah RI, atau AMC.</p>
     </footer>
   </div>
 </BaseLayout>

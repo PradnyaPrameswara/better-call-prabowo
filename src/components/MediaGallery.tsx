@@ -52,12 +52,12 @@ export default function MediaGallery({ items, heading, intro, variant = "player"
           </div>
           <aside className="media-gallery-promo">
             <strong>{intro}</strong>
-            <img src={photos.portrait.url} alt="Potret arsip Presiden Prabowo Subianto" width="132" height="146" loading="lazy" />
+            <img src={photos.whiteHouse.url} alt="Foto arsip Prabowo Subianto bertemu Presiden Joe Biden di Gedung Putih" width="132" height="146" loading="lazy" />
             <span>PRABOWO SUBIANTO</span>
-            <small>PARODI INDEPENDEN</small>
+            <small>BETTER CALL PRABOWO!</small>
           </aside>
         </div>
-        <p className="gallery-disclaimer">REKAMAN ASLI · LAYOUT PARODI · BUKAN IKLAN ATAU DUKUNGAN RESMI</p>
+        <p className="gallery-disclaimer">VIDEO ARSIP PILIHAN · LIHAT SUMBER REKAMAN</p>
         <dialog
           ref={dialogRef}
           className="media-dialog"
@@ -145,7 +145,7 @@ export default function MediaGallery({ items, heading, intro, variant = "player"
           <span className="showcase-credit">Kredit: {selected.credit}</span>
         </div>
         <p className="showcase-parody-note">
-          MEDIA ARSIP ASLI DALAM LAYOUT PARODI. BUKAN IKLAN ATAU DUKUNGAN RESMI.
+          VIDEO ARSIP PILIHAN · TONTON REKAMAN ASLINYA
         </p>
       </div>
       <aside className="showcase-selector" aria-label={`Pilihan media: ${heading}`}>
@@ -162,14 +162,18 @@ export default function MediaGallery({ items, heading, intro, variant = "player"
               onClick={() => select(item)}
             >
               <span className="showcase-selector-image">
-                <img
-                  src={item.image}
-                  alt=""
-                  width="122"
-                  height="62"
-                  style={{ objectPosition: item.objectPosition }}
-                  loading="lazy"
-                />
+                {selected.id === item.id ? (
+                  <span className="showcase-selected-mark" aria-hidden="true">ON AIR</span>
+                ) : (
+                  <img
+                    src={item.image}
+                    alt=""
+                    width="122"
+                    height="62"
+                    style={{ objectPosition: item.objectPosition }}
+                    loading="lazy"
+                  />
+                )}
                 <span aria-hidden="true">{item.kind === "video" ? "▶" : "+"}</span>
               </span>
               <strong>{item.title}</strong>

@@ -1,10 +1,21 @@
 import { existsSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { mkdir, rename, unlink, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { join } from "node:path";
 
 const directory = fileURLToPath(new URL("../public/images/prabowo/", import.meta.url));
+const commons = (name, width) => {
+  const file = name.replaceAll(" ", "_");
+  const md5 = createHash("md5").update(file).digest("hex");
+  const prefix = `https://upload.wikimedia.org/wikipedia/commons/${width ? "thumb/" : ""}${md5[0]}/${md5.slice(0, 2)}/${encodeURIComponent(file)}`;
+  return width ? `${prefix}/${width}px-${encodeURIComponent(file)}` : prefix;
+};
+
 const files = [
+  ["decorated-portrait.jpg", commons("President Prabowo Subianto in 2024 with decorations.jpg", 500)],
+  ["cabinet-announcement.jpg", commons("Prabowo Subianto announces new cabinet.jpg")],
+  ["turkey-speech.jpg", commons("Prabowo delivers Speech before Turkish Parliament.jpg")],
   ["portrait.jpg", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Prabowo_Subianto_2024_official_portrait.jpg/500px-Prabowo_Subianto_2024_official_portrait.jpg"],
   ["inauguration.jpg", "https://upload.wikimedia.org/wikipedia/commons/6/64/Prabowo_Subianto_delivers_first_speech_as_President_of_Indonesia_01.jpg"],
   ["inauguration-closeup.jpg", "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Prabowo_Subianto_delivers_first_speech_as_President_of_Indonesia_04.jpg/960px-Prabowo_Subianto_delivers_first_speech_as_President_of_Indonesia_04.jpg"],

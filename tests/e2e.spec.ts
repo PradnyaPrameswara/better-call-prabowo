@@ -51,6 +51,25 @@ for (const viewport of viewports) {
       );
       expect(broken, "Images that finished loading must not be broken").toEqual([]);
       expect(errors, "There should be no uncaught client JS errors").toEqual([]);
+
+      await expect.poll(async () => page.locator("astro-island[ssr]").count()).toBe(0);
+      const artwork = await page.locator(".retro-site img").evaluateAll((images) => {
+        const srcCounts = new Map<string, number>();
+        const cropped: string[] = [];
+        for (const image of images as HTMLImageElement[]) {
+          const src = new URL(image.currentSrc || image.src, location.href).pathname;
+          srcCounts.set(src, (srcCounts.get(src) ?? 0) + 1);
+          if (getComputedStyle(image).objectFit === "cover") cropped.push(src);
+        }
+        return {
+          repeated: Array.from(srcCounts.entries()).filter(([, count]) => count > 1),
+          cropped,
+        };
+      });
+      expect(artwork.repeated, "Each page uses each photo at most once").toEqual([]);
+      expect(artwork.cropped, "Photos should display complete frames rather than cover-cropping").toEqual([]);
+      await expect(page.locator("body")).not.toContainText(/parodi/i);
+
       await page.screenshot({
         path: `test-results/screenshots/${route.key}-${viewport.width}x${viewport.height}.png`,
         fullPage: true,

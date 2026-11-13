@@ -1,13 +1,14 @@
 ---
-import { portrait, sidebarPromotions } from "../data/site";
+import { sidebarPromotions } from "../data/site";
+import { photos } from "../data/media";
 ---
-<aside class="retro-sidebar" aria-label="Poster promosi parodi">
-  <div class="sidebar-heading">SITUS PARODI!</div>
+<aside class="retro-sidebar" aria-label="Poster bergaya retro">
+  <div class="sidebar-heading">PANGGIL SEKARANG!</div>
   <div class="sidebar-poster">
     <span class="poster-star">★</span>
     <strong>BETTER CALL<br />PRABOWO!</strong>
-    <img src={portrait.src} alt={portrait.alt} width="120" height="152" loading="lazy" />
-    <span class="poster-caption">BUKAN SITUS RESMI</span>
+    <img src={photos.decoratedPortrait.url} alt="Potret Prabowo Subianto dengan tanda kehormatan" width="120" height="152" loading="lazy" />
+    <span class="poster-caption">LIHAT VIDEO PILIHAN!</span>
   </div>
   {sidebarPromotions.map((promotion) => (
     <div class:list={["sidebar-ad", promotion.variation]}>

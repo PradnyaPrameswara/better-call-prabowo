@@ -1,8 +1,8 @@
 export const siteIdentity = {
   name: "Better Call Prabowo!",
-  subtitle: "PARODI INDONESIA",
-  tagline: "BUTUH BANTUAN? BETTER CALL PRABOWO!",
-  unofficialNotice: "SITUS PARODI INDEPENDEN — BUKAN SITUS RESMI PEMERINTAH",
+  subtitle: "THE MAN OF THE HOUR!",
+  tagline: "BUTUH JAWABAN? BETTER CALL PRABOWO!",
+  unofficialNotice: "PROYEK KREATIF INDEPENDEN — BUKAN SITUS RESMI",
 } as const;
 
 export const navigation = [
@@ -23,6 +23,6 @@ export const portrait = {
 } as const;
 
 export const sidebarPromotions = [
-  { title: "INFO NUSANTARA", detail: "CERITA FIKTIF SERBA INDONESIA", variation: "red" },
-  { title: "LAYANAN WARGA", detail: "CERITA PARODI NUSANTARA", variation: "blue" },
+  { title: "INFO NUSANTARA", detail: "LIHAT CERITA PILIHAN", variation: "red" },
+  { title: "LAYANAN WARGA", detail: "TONTON KOLEKSI VIDEO", variation: "blue" },
 ] as const;
