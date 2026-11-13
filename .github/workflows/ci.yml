@@ -25,3 +25,24 @@ jobs:
         run: pnpm run media:verify
       - name: Static build
         run: pnpm run build
+      - name: Install Chromium browser
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Browser QA and screenshots
+        run: pnpm run test:browser
+      - name: Upload browser screenshots and diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-qa-screenshots
+          path: |
+            test-results/
+            playwright-report/
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Build using GitHub Pages base path
+        env:
+          SITE_BASE: /better-call-prabowo/
+          SITE_URL: https://pradnyaprameswara.github.io
+        run: pnpm run build
+      - name: Verify GitHub Pages paths and assets
+        run: pnpm run pages:verify

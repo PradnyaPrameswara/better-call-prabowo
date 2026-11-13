@@ -13,7 +13,9 @@
     "preview": "astro preview",
     "check": "astro check",
     "media:sync": "node scripts/import-photos.mjs",
-    "media:verify": "node scripts/verify-media.mjs"
+    "media:verify": "node scripts/verify-media.mjs",
+    "test:browser": "playwright test",
+    "pages:verify": "node scripts/check-pages-build.mjs"
   },
   "dependencies": {
     "astro": "^7.4.11",
@@ -32,6 +34,7 @@
     "@astrojs/check": "^0.9.12",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "@playwright/test": "^1.57.0"
   }
 }

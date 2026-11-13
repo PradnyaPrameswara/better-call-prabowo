@@ -1,0 +1,12 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+---
+<BaseLayout title="404 — Halaman tidak ditemukan | Better Call Prabowo">
+  <main style="max-width:640px;margin:60px auto;padding:28px 20px;text-align:center;background:#ffcc20;border:6px ridge #ad1800;color:#802000;">
+    <p style="font-weight:900">PARODI INDEPENDEN · BUKAN SITUS RESMI</p>
+    <h1 style="font:bold 48px/1 Arial,sans-serif;margin:20px 0">404!</h1>
+    <p>HALAMAN YANG ANDA CARI TIDAK ADA.</p>
+    <p><a href={base} style="font-weight:900;color:#b30800;text-decoration:underline">KEMBALI KE BERANDA!</a></p>
+  </main>
+</BaseLayout>
