@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteNavigation from "./SiteNavigation.astro";
+import PromoSidebar from "./PromoSidebar.astro";
+import { portrait, siteIdentity, type PageId } from "../data/site";
+import "../styles/retro.css";
+
+interface Props {
+  page: PageId;
+  title: string;
+}
+
+const { page, title } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const scales = `${base}images/scales.svg`;
+---
+<BaseLayout title={`${title} | ${siteIdentity.name}`}>
+  <a href="#konten" class="skip-link">Langsung ke konten</a>
+  <div class="retro-site">
+    <header class="retro-header">
+      <div class="header-portrait">
+        <img src={portrait.src} alt={portrait.alt} width="132" height="122" />
+      </div>
+      <div class="header-brand">
+        <div class="header-brand-script">Better Call Prabowo!</div>
+        <div class="header-brand-name">PRABOWO SUBIANTO</div>
+        <div class="header-brand-kicker">{siteIdentity.subtitle}</div>
+      </div>
+    </header>
+
+    <div class="retro-announcement">
+      <a href={`${base}#tentang`}>PENGUMUMAN!!! INI ADALAH SITUS PARODI — KLIK DI SINI UNTUK INFO!!!</a>
+    </div>
+
+    <div class="retro-upper">
+      <SiteNavigation active={page} />
+      <main id="konten" class="retro-main">
+        <slot />
+      </main>
+      <PromoSidebar />
+    </div>
+
+    <section class="retro-welcome" aria-label="Selamat datang">
+      <img src={scales} alt="" width="92" height="80" aria-hidden="true" />
+      <h2>SELAMAT DATANG, WARGA!</h2>
+      <img src={scales} alt="" width="92" height="80" aria-hidden="true" />
+    </section>
+
+    <section class="retro-ad-grid" aria-label="Iklan fiktif bernuansa retro">
+      <div class="retro-ad-tile tile-one">
+        <div class="ad-burst">HEBOH!</div>
+        <strong>WARTA<br />NUSANTARA</strong>
+        <span>BERITA FIKTIF HARI INI</span>
+      </div>
+      <div class="retro-ad-tile tile-two">
+        <span class="ad-super">BERANI BEDA!</span>
+        <strong>WARUNG<br />KOPI<br />PAGI</strong>
+        <span>NGOBROL, BUKAN KAMPANYE</span>
+      </div>
+      <div class="retro-ad-tile tile-three">
+        <span class="ad-super">JANGAN PANIK!</span>
+        <strong>HARI INI<br />CERIA!</strong>
+        <span>SENYUM DULU, WARGA!</span>
+      </div>
+    </section>
+
+    <section class="retro-message" id="tentang">
+      <div class="message-emblem" aria-hidden="true">★</div>
+      <div>
+        <h2>PERHATIAN!!! INI WEBSITE PARODI!</h2>
+        <p>Seluruh iklan dan cerita di halaman ini bersifat fiktif untuk hiburan. Tidak berafiliasi dengan Presiden Prabowo, pemerintah Indonesia, atau AMC.</p>
+      </div>
+    </section>
+
+    <footer class="retro-footer">
+      <p><a href={base}>Beranda</a><span aria-hidden="true"> · </span><a href="https://bettercallsaul.amc.com/" target="_blank" rel="noreferrer">Referensi desain AMC</a><span aria-hidden="true"> · </span><a href={portrait.source} target="_blank" rel="noreferrer">Kredit foto</a></p>
+      <p>© 2026 Better Call Prabowo — parodi independen, bukan situs resmi atau kampanye.</p>
+    </footer>
+  </div>
+</BaseLayout>

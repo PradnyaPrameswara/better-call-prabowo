@@ -1,0 +1,24 @@
+---
+import { navigation, type PageId } from "../data/site";
+
+interface Props { active: PageId }
+const { active } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+<nav class="retro-nav" aria-label="Navigasi utama">
+  <div class="nav-sticker" aria-hidden="true">MENU UTAMA!</div>
+  <ul class="nav-links">
+    {navigation.map((item) => (
+      <li>
+        <a href={base + item.path} aria-current={item.id === active ? "page" : undefined}>
+          {item.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+  <div class="nav-promo" aria-hidden="true">
+    <span>INDONESIA!</span>
+    <strong>WOW!</strong>
+    <small>RETRO WEB!</small>
+  </div>
+</nav>
