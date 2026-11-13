@@ -26,23 +26,33 @@ const hasShowcase = page === "asseenontv";
 <BaseLayout title={`${title} | ${siteIdentity.name}`}>
   <a href="#konten" class="skip-link">Langsung ke konten</a>
   <div class="retro-site">
-    <header class="retro-header retro-banner-header">
-      <picture class="retro-banner-picture">
-        <img
-          src={`${base}images/header/better-call-prabowo-desktop.avif`}
-          width="1200"
-          height="220"
-          alt="Better Call Prabowo! Banner ilustratif bergaya iklan retro dengan foto Prabowo dan teks Presiden Indonesia."
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-        />
-      </picture>
-      <a
-        href="#konten"
-        class="retro-banner-cta"
-        aria-label="Lihat video dan foto Better Call Prabowo"
-      ></a>
+    <header class="retro-header retro-banner-header" aria-label="Better Call Prabowo">
+      <div class="retro-banner-artwork">
+        <div
+          class="retro-banner-left"
+          role="img"
+          aria-label="Ilustrasi Prabowo dengan bendera Indonesia, helikopter, dan latar dramatis"
+          style={`background-image: url('${base}images/header/better-call-prabowo-desktop.avif')`}
+        ></div>
+        <div class="retro-banner-center">
+          <strong class="retro-banner-script">Better Call Prabowo!</strong>
+          <strong class="retro-banner-title">PRABOWO</strong>
+          <span class="retro-banner-subtitle">PRESIDEN INDONESIA</span>
+        </div>
+        <div class="retro-banner-right">
+          <img
+            src={portrait.src}
+            alt={portrait.alt}
+            width="500"
+            height="640"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
+      <a href="#konten" class="retro-banner-cta" aria-label="Lihat video dan foto Better Call Prabowo">
+        WANT UPDATES FROM PRABOWO? CLICK HERE!!!
+      </a>
     </header>
 
     <div class:list={["retro-upper", { "media-layout": hasShowcase } ]}>

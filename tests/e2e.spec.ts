@@ -24,52 +24,36 @@ for (const viewport of viewports) {
       page.on("pageerror", (error) => errors.push(error.message));
       await page.goto(route.route);
       await expect(page.locator(".retro-site")).toBeVisible();
-      const banner = page.locator(".retro-banner-picture img");
-      await expect(banner).toBeVisible();
+      const header = page.locator(".retro-banner-header");
+      await expect(header).toBeVisible();
+      const portrait = header.locator(".retro-banner-right img");
+      await expect(portrait).toHaveCount(1);
+      await expect.poll(() => portrait.evaluate((image) => (image as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+      await expect(header.locator(".retro-banner-title")).toHaveText("PRABOWO");
+      await expect(header.locator(".retro-banner-script")).toContainText("Better Call Prabowo");
+      await expect(header.locator(".retro-banner-cta")).toHaveAttribute("href", "#konten");
+      await expect(header.locator(".retro-banner-picture")).toHaveCount(0);
       await expect(page.locator(".header-portrait")).toHaveCount(0);
       await expect(page.locator(".retro-announcement")).toHaveCount(0);
-      const bannerMetrics = await banner.evaluate((image) => {
-        const img = image as HTMLImageElement;
-        const box = img.getBoundingClientRect();
+      const bannerMetrics = await header.evaluate((element) => {
+        const box = element.getBoundingClientRect();
+        const site = document.querySelector(".retro-site")!.getBoundingClientRect();
+        const title = element.querySelector(".retro-banner-title")!.getBoundingClientRect();
+        const portrait = element.querySelector(".retro-banner-right img")!.getBoundingClientRect();
         return {
           width: box.width,
-          height: box.height,
-          loadedWidth: img.naturalWidth,
-          loadedHeight: img.naturalHeight,
-          currentSrc: img.currentSrc,
-          fit: getComputedStyle(img).objectFit,
+          siteWidth: site.width,
+          titleWithin: title.left >= box.left - 1 && title.right <= box.right + 1,
+          portraitWithin: portrait.left >= box.left - 1 && portrait.right <= box.right + 1,
+          imageCount: element.querySelectorAll("img").length,
+          overflowX: element.scrollWidth - element.clientWidth,
         };
       });
-      expect(bannerMetrics.loadedWidth).toBeGreaterThan(0);
-      expect(bannerMetrics.fit).toBe("contain");
-      const expectedRatio = 1200 / 220;
-      expect(Math.abs(bannerMetrics.width / bannerMetrics.height - expectedRatio)).toBeLessThan(0.03);
-      expect(bannerMetrics.currentSrc).toContain("better-call-prabowo-desktop.avif");
-      const alignment = await page.evaluate(() => {
-        const container = document.querySelector(".retro-site")!.getBoundingClientRect();
-        const header = document.querySelector(".retro-banner-header")!.getBoundingClientRect();
-        const picture = document.querySelector(".retro-banner-picture")!.getBoundingClientRect();
-        const img = document.querySelector(".retro-banner-picture img")!.getBoundingClientRect();
-        return {
-          containerWidth: container.width,
-          headerWidth: header.width,
-          pictureWidth: picture.width,
-          imageWidth: img.width,
-          imageHeight: img.height,
-          horizontalGapLeft: Math.abs(header.left - img.left),
-          horizontalGapRight: Math.abs(header.right - img.right),
-          verticalGapTop: Math.abs(header.top - img.top),
-          verticalGapBottom: Math.abs(header.bottom - img.bottom),
-        };
-      });
-      expect(alignment.headerWidth).toBeCloseTo(alignment.containerWidth, 1);
-      expect(alignment.pictureWidth).toBeCloseTo(alignment.headerWidth, 1);
-      expect(alignment.imageWidth).toBeCloseTo(alignment.headerWidth, 1);
-      expect(alignment.horizontalGapLeft).toBeLessThan(2);
-      expect(alignment.horizontalGapRight).toBeLessThan(2);
-      expect(alignment.verticalGapTop).toBeLessThan(2);
-      expect(alignment.verticalGapBottom).toBeLessThan(2);
-      await expect(page.locator(".retro-banner-cta")).toHaveAttribute("href", "#konten");
+      expect(Math.abs(bannerMetrics.siteWidth - bannerMetrics.width)).toBeLessThan(2);
+      expect(bannerMetrics.titleWithin).toBe(true);
+      expect(bannerMetrics.portraitWithin).toBe(true);
+      expect(bannerMetrics.imageCount).toBe(1);
+      expect(bannerMetrics.overflowX).toBeLessThanOrEqual(2);
       await expect(page.locator("astro-dev-toolbar")).toHaveCount(0);
       await expect(page.locator("main h1")).toBeVisible();
       await expect(page.locator(".nav-links a")).toHaveCount(5);
@@ -239,55 +223,36 @@ test("webcam clearly marked simulation and camera selection", async ({ page }) =
   await expect(page.locator(".webcam-caption").first()).toContainText("Gedung Putih");
 });
 
-test("header artwork contains no duplicated right-cap silhouette", async ({ page }) => {
-  await page.goto("/");
-  const pixels = await page.locator(".retro-banner-picture img").evaluate((image) => {
-    const img = image as HTMLImageElement;
-    const canvas = document.createElement("canvas");
-    canvas.width = img.naturalWidth;
-    canvas.height = img.naturalHeight;
-    const ctx = canvas.getContext("2d")!;
-    ctx.drawImage(img, 0, 0);
-    const sample = (x: number, y: number) =>
-      Array.from(ctx.getImageData(x, y, 1, 1).data).slice(0, 3);
-    return {
-      leftOfHat: sample(995, 15),
-      rightOfHat: sample(1125, 12),
-    };
-  });
-  for (const [location, rgb] of Object.entries(pixels)) {
-    expect(rgb[0], `${location}: clean orange-red header stripe`).toBeGreaterThan(180);
-    expect(rgb[1], `${location}: no black ghost or yellow copied from photo`).toBeLessThan(135);
-    expect(rgb[2], `${location}: preserve red/orange palette`).toBeLessThan(85);
-  }
-});
-
-test("full banner remains intact on both sides of the responsive breakpoint", async ({ page }) => {
-  for (const width of [599, 600, 601, 820, 821, 960]) {
+test("header has one portrait, crisp native text and no overflow at breakpoint widths", async ({ page }) => {
+  for (const width of [320, 390, 599, 600, 601, 768, 820, 821, 960, 1440]) {
     await page.setViewportSize({ width, height: 850 });
     await page.goto("/");
-    const metrics = await page.locator(".retro-banner-picture img").evaluate((node) => {
-      const img = node as HTMLImageElement;
-      const banner = img.getBoundingClientRect();
-      const header = img.closest("header")!.getBoundingClientRect();
+    const header = page.locator(".retro-banner-header");
+    await expect(header).toBeVisible();
+    await expect(header.locator(".retro-banner-right img")).toHaveCount(1);
+    await expect(header.locator(".retro-banner-title")).toHaveText("PRABOWO");
+    await expect(header.locator(".retro-banner-cta")).toBeVisible();
+    const metrics = await header.evaluate((node) => {
+      const root = node.getBoundingClientRect();
+      const center = node.querySelector(".retro-banner-center")!.getBoundingClientRect();
+      const text = node.querySelector(".retro-banner-script")!.getBoundingClientRect();
+      const cta = node.querySelector(".retro-banner-cta")!.getBoundingClientRect();
+      const portrait = node.querySelector(".retro-banner-right img")!.getBoundingClientRect();
       return {
-        source: img.currentSrc,
-        naturalWidth: img.naturalWidth,
-        naturalHeight: img.naturalHeight,
-        width: banner.width,
-        height: banner.height,
-        left: banner.left - header.left,
-        right: header.right - banner.right,
-        top: banner.top - header.top,
-        bottom: header.bottom - banner.bottom,
+        width: root.width,
+        viewport: window.innerWidth,
+        site: document.querySelector(".retro-site")!.getBoundingClientRect().width,
+        textInsideCenter: text.left >= center.left - 1 && text.right <= center.right + 1,
+        portraitInsideHeader: portrait.left >= root.left - 1 && portrait.right <= root.right + 1,
+        ctaInsideHeader: cta.left >= root.left - 1 && cta.right <= root.right + 1,
+        overflow: document.documentElement.scrollWidth - window.innerWidth,
       };
     });
-    expect(metrics.source).toContain("better-call-prabowo-desktop.avif");
-    expect(metrics.naturalWidth).toBe(1200);
-    expect(metrics.naturalHeight).toBe(220);
-    expect(Math.abs(metrics.width / metrics.height - 1200 / 220)).toBeLessThan(0.02);
-    for (const gap of [metrics.left, metrics.right, metrics.top, metrics.bottom]) {
-      expect(Math.abs(gap), `Banner must meet header edges at ${width}px`).toBeLessThan(2);
-    }
+    expect(metrics.width).toBeLessThanOrEqual(metrics.viewport + 1);
+    expect(Math.abs(metrics.width - metrics.site)).toBeLessThan(2);
+    expect(metrics.textInsideCenter, `Legible brand at ${width}px`).toBe(true);
+    expect(metrics.portraitInsideHeader).toBe(true);
+    expect(metrics.ctaInsideHeader).toBe(true);
+    expect(metrics.overflow).toBeLessThanOrEqual(2);
   }
 });
