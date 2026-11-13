@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 120" role="img" aria-labelledby="title">
+<title id="title">Ornamen timbangan vintage</title>
+<defs><linearGradient id="gold" y2="1"><stop stop-color="#ffe47a"/><stop offset=".6" stop-color="#d58c17"/><stop offset="1" stop-color="#6c3209"/></linearGradient></defs>
+<g fill="none" stroke="#77360b" stroke-linecap="round" stroke-linejoin="round">
+<path d="M70 12v89M26 30h88M70 12l-6 9h12z" stroke-width="7"/>
+<path d="M26 30 8 77h36L26 30Zm88 0L96 77h36l-18-47Z" stroke-width="2" fill="url(#gold)"/>
+<path d="M6 78q20 26 40 0M94 78q20 26 40 0" fill="url(#gold)" stroke-width="4"/>
+<path d="M45 107h50M35 115h70" stroke-width="8"/>
+</g>
+<circle cx="70" cy="29" r="7" fill="#ffe47a" stroke="#77360b" stroke-width="3"/>
+</svg>
