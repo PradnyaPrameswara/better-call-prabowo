@@ -158,3 +158,26 @@
   .media-tiles .media-title { font-size: 10px; }
   .retro-welcome h2 { font-size: 24px; }
 }
+
+/* Mobile: keep archival portrait prominent without leaving half the sidebar empty. */
+@media (max-width: 600px) {
+  .retro-sidebar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-items: stretch;
+    gap: 7px;
+    padding: 8px;
+  }
+  .retro-sidebar > * { max-width: none; flex: initial; }
+  .retro-sidebar .sidebar-heading {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+  .retro-sidebar .sidebar-poster {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(200px, 100%);
+    max-width: 200px;
+  }
+  .retro-sidebar .sidebar-ad { min-height: 56px; }
+}
