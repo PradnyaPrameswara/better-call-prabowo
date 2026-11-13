@@ -60,19 +60,43 @@ for (const viewport of viewports) {
   }
 }
 
-test("homepage video selector changes media and stops playback", async ({ page }) => {
+test("homepage reproduces four consultation thumbnails and opens source media", async ({ page }) => {
   await page.goto("/");
+  await expect.poll(() => page.locator(".media-tiles").evaluate((node) => node.closest("astro-island")?.hasAttribute("ssr") ?? true)).toBe(false);
+  const choices = page.locator(".media-tiles .media-thumbnail");
+  await expect(choices).toHaveCount(4);
+  await expect(page.locator(".media-tiles .media-gallery-promo")).toBeVisible();
+  const geometry = await page.evaluate(() => ({
+    columns: getComputedStyle(document.querySelector(".media-tiles .media-thumbnails")!).gridTemplateColumns.trim().split(/\\s+/).length,
+    galleryWidth: document.querySelector(".media-tiles")?.getBoundingClientRect().width ?? 0,
+  }));
+  expect(geometry.columns).toBe(2);
+  expect(geometry.galleryWidth).toBeGreaterThan(400);
+  await choices.nth(1).click();
+  const modal = page.locator(".media-dialog");
+  await expect(modal).toBeVisible();
+  await expect(modal.locator(".media-dialog-header strong")).toHaveText("KTT G20!");
+  await expect(modal.locator("iframe")).toHaveAttribute("src", /youtube-nocookie\\.com\\/embed/);
+  await page.getByRole("button", { name: "Tutup pemutar" }).click();
+  await expect(modal).not.toBeVisible();
+  await expect(modal.locator("iframe")).toHaveCount(0);
+  await choices.nth(3).click();
+  await expect(modal.locator(".media-dialog-image")).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(modal).not.toBeVisible();
+});
+
+test("TV gallery retains selectable video player", async ({ page }) => {
+  await page.goto("/asseenontv/");
   await expect.poll(() => page.locator(".media-showcase").evaluate((node) => node.closest("astro-island")?.hasAttribute("ssr") ?? true)).toBe(false);
   const choices = page.locator(".showcase-selector-item");
-  await expect(choices).toHaveCount(4);
+  await expect(choices).toHaveCount(3);
   await choices.nth(1).click();
   await expect(choices.nth(1)).toHaveAttribute("aria-pressed", "true");
-  await expect(page.locator(".showcase-info strong")).toHaveText("KTT G20!");
   await page.getByRole("button", { name: /putar video arsip/i }).click();
-  await expect(page.locator(".showcase-video-embed")).toHaveAttribute("src", /youtube-nocookie\.com\/embed/);
-  await choices.nth(3).click();
+  await expect(page.locator(".showcase-video-embed")).toHaveAttribute("src", /youtube-nocookie\\.com\\/embed/);
+  await choices.nth(2).click();
   await expect(page.locator(".showcase-video-embed")).toHaveCount(0);
-  await expect(page.locator(".showcase-photo-stamp")).toBeVisible();
 });
 
 test("navigation, fictional testimony and source attribution", async ({ page }) => {
