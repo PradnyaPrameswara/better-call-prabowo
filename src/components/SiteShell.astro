@@ -12,6 +12,7 @@ import "../styles/stage3.css";
 import "../styles/fidelity.css";
 import "../styles/framing.css";
 import "../styles/legibility.css";
+import "../styles/banner-header.css";
 
 interface Props {
   page: PageId;
@@ -25,21 +26,29 @@ const hasShowcase = page === "asseenontv";
 <BaseLayout title={`${title} | ${siteIdentity.name}`}>
   <a href="#konten" class="skip-link">Langsung ke konten</a>
   <div class="retro-site">
-    <header class="retro-header">
-      <div class="header-superline" aria-hidden="true">BUTUH JAWABAN? BETTER CALL PRABOWO!</div>
-      <div class="header-portrait">
-        <img src={portrait.src} alt={portrait.alt} width="132" height="122" />
-      </div>
-      <div class="header-brand">
-        <div class="header-brand-script">Better Call Prabowo!</div>
-        <div class="header-brand-name">PRABOWO SUBIANTO</div>
-        <div class="header-brand-kicker">{siteIdentity.subtitle}</div>
-      </div>
+    <header class="retro-header retro-banner-header">
+      <picture class="retro-banner-picture">
+        <source
+          media="(max-width: 600px)"
+          srcset={`${base}images/header/better-call-prabowo-mobile.avif`}
+          type="image/avif"
+        />
+        <img
+          src={`${base}images/header/better-call-prabowo-desktop.avif`}
+          width="1200"
+          height="220"
+          alt="Better Call Prabowo! Banner ilustratif bergaya iklan retro dengan foto Prabowo dan teks Presiden Indonesia."
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </picture>
+      <a
+        href="#konten"
+        class="retro-banner-cta"
+        aria-label="Lihat video dan foto Better Call Prabowo"
+      ></a>
     </header>
-
-    <div class="retro-announcement">
-      <a href="#konten">MAU LIHAT VIDEONYA? KLIK DI SINI SEKARANG!!!</a>
-    </div>
 
     <div class:list={["retro-upper", { "media-layout": hasShowcase } ]}>
       <SiteNavigation active={page} />

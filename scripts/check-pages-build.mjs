@@ -21,4 +21,6 @@ for (const image of ["portrait", "inauguration", "inauguration-closeup", "g20", 
 }
 await stat("dist/images/scales.svg");
 await stat("dist/images/presidential-seal-gold.svg");
+await stat("dist/images/header/better-call-prabowo-desktop.avif");
+await stat("dist/images/header/better-call-prabowo-mobile.avif");
 process.stdout.write("Verified six HTML routes and all 8 local images for project-site base path.\n");
