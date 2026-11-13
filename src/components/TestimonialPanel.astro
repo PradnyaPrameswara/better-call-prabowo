@@ -1,0 +1,34 @@
+---
+import { parodyTestimonials } from "../data/testimonials";
+import { portrait } from "../data/site";
+---
+<section class="media-gallery testimonials-gallery" aria-labelledby="testimonials-title">
+  <h1 class="panel-heading" id="testimonials-title">KATA PARA WARGA!</h1>
+  <div class="media-gallery-body">
+    <div class="media-thumbnails testimonial-tiles">
+      {parodyTestimonials.map((item) => (
+        <details class="testimonial-tile">
+          <summary>
+            <span class="media-frame">
+              <img src={item.image} alt={item.imageAlt} width="192" height="118" loading="lazy" />
+              <span class="fiction-stamp" aria-hidden="true">FIKSI!</span>
+            </span>
+            <strong class="media-title">{item.name}</strong>
+            <small>BACA TESTIMONI</small>
+          </summary>
+          <div class="testimonial-story">
+            <p>“{item.quotation}”</p>
+            <span>{item.label}</span>
+          </div>
+        </details>
+      ))}
+    </div>
+    <aside class="media-gallery-promo">
+      <strong>INI BUKAN TESTIMONI ASLI!</strong>
+      <img src={portrait.src} alt={portrait.alt} width="124" height="144" loading="lazy" />
+      <span>BETTER CALL PRABOWO</span>
+      <small>SITUS PARODI</small>
+    </aside>
+  </div>
+  <p class="gallery-disclaimer">SEMUA KUTIPAN DI HALAMAN INI ADALAH FIKSI. FOTO PRABOWO MERUPAKAN ILUSTRASI ARSIP, BUKAN FOTO PEMBERI TESTIMONI.</p>
+</section>
