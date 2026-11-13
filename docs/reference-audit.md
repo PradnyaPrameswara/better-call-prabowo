@@ -44,7 +44,7 @@ The likely desktop grid is ~960px wide with 160px / 640px / 160px columns. Treat
 - PR #01: application foundation.
 - PR #02: audit, metadata, asset provenance and reusable site data.
 - PR #03: shared chrome and honest placeholders on every planned route.
-- PR #04–#06: actual page media, interactions and card/webcam experiences.
+- PR #05–#07: completed initial media galleries, clearly fictional testimonials, e-card editor and webcam simulation.
 - PR #07–#08: responsive and screenshot-parity refinement.
 - PR #09: GitHub Pages deployment (including base-path adjustments).
 
