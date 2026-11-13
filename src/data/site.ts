@@ -24,5 +24,5 @@ export const portrait = {
 
 export const sidebarPromotions = [
   { title: "INFO NUSANTARA", detail: "CERITA FIKTIF SERBA INDONESIA", variation: "red" },
-  { title: "LAYANAN WARGA", detail: "KLIK UNTUK JELAJAHI", variation: "blue" },
+  { title: "LAYANAN WARGA", detail: "CERITA PARODI NUSANTARA", variation: "blue" },
 ] as const;

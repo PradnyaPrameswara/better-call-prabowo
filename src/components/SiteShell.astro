@@ -8,6 +8,7 @@ import "../styles/media.css";
 import "../styles/testimonials.css";
 import "../styles/ecards-webcam.css";
 import "../styles/stage3.css";
+import "../styles/fidelity.css";
 
 interface Props {
   page: PageId;
@@ -16,8 +17,7 @@ interface Props {
 
 const { page, title } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const scales = `${base}images/scales.svg`;
-const hasShowcase = page === "consultations" || page === "asseenontv";
+const hasShowcase = page === "asseenontv";
 ---
 <BaseLayout title={`${title} | ${siteIdentity.name}`}>
   <a href="#konten" class="skip-link">Langsung ke konten</a>
@@ -47,26 +47,36 @@ const hasShowcase = page === "consultations" || page === "asseenontv";
     </div>
 
     <section class="retro-welcome" aria-label="Selamat datang">
-      <img src={scales} alt="" width="92" height="80" aria-hidden="true" />
       <h2>SELAMAT DATANG, WARGA!</h2>
-      <img src={scales} alt="" width="92" height="80" aria-hidden="true" />
     </section>
 
-    <section class="retro-ad-grid" aria-label="Iklan fiktif bernuansa retro">
-      <div class="retro-ad-tile tile-one">
-        <div class="ad-burst">HEBOH!</div>
-        <strong>WARTA<br />NUSANTARA</strong>
-        <span>BERITA FIKTIF HARI INI</span>
+    <section class="retro-ad-grid retro-ad-collage" aria-label="Iklan fiktif bernuansa retro">
+      <div class="retro-ad-tile collage-one">
+        <span class="ad-billboard-heading">KABAR HARI INI!!!</span>
+        <div class="ad-photo">
+          <img src={`${base}images/prabowo/portrait.jpg`} alt="Potret arsip Presiden Prabowo Subianto" width="300" height="160" loading="lazy" />
+          <span class="ad-sticker">EKSKLUSIF!</span>
+        </div>
+        <strong>INFO<br />NUSANTARA!</strong>
+        <small>BUKAN BERITA ATAU IKLAN RESMI</small>
       </div>
-      <div class="retro-ad-tile tile-two">
-        <span class="ad-super">BERANI BEDA!</span>
-        <strong>WARUNG<br />KOPI<br />PAGI</strong>
-        <span>NGOBROL, BUKAN KAMPANYE</span>
+      <div class="retro-ad-tile collage-two">
+        <span class="ad-billboard-heading">ADA CERITA BARU?</span>
+        <div class="ad-photo">
+          <img src={`${base}images/prabowo/meeting.jpg`} alt="Foto arsip pertemuan Prabowo dan Joko Widodo" width="300" height="160" loading="lazy" />
+          <span class="ad-sticker">PARODI!</span>
+        </div>
+        <strong>OBROLAN<br />WARGA!</strong>
+        <small>FOTO ARSIP · CERITA FIKTIF</small>
       </div>
-      <div class="retro-ad-tile tile-three">
-        <span class="ad-super">JANGAN PANIK!</span>
-        <strong>HARI INI<br />CERIA!</strong>
-        <span>SENYUM DULU, WARGA!</span>
+      <div class="retro-ad-tile collage-three">
+        <span class="ad-billboard-heading">SELAMAT DATANG!</span>
+        <div class="ad-photo">
+          <img src={`${base}images/prabowo/g20.jpg`} alt="Foto arsip Presiden Prabowo dalam pertemuan G20" width="300" height="160" loading="lazy" />
+          <span class="ad-sticker">WOW!!!</span>
+        </div>
+        <strong>WARUNG<br />KOPI PAGI!</strong>
+        <small>BUKAN PROMOSI PEMERINTAH</small>
       </div>
     </section>
 
