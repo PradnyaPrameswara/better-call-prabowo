@@ -42,11 +42,33 @@ for (const viewport of viewports) {
       });
       expect(bannerMetrics.loadedWidth).toBeGreaterThan(0);
       expect(bannerMetrics.fit).toBe("contain");
-      const expectedRatio = viewport.width <= 600 ? 3 : 1200 / 220;
+      const expectedRatio = 1200 / 220;
       expect(Math.abs(bannerMetrics.width / bannerMetrics.height - expectedRatio)).toBeLessThan(0.03);
-      expect(bannerMetrics.currentSrc).toContain(
-        viewport.width <= 600 ? "better-call-prabowo-mobile.avif" : "better-call-prabowo-desktop.avif"
-      );
+      expect(bannerMetrics.currentSrc).toContain("better-call-prabowo-desktop.avif");
+      const alignment = await page.evaluate(() => {
+        const container = document.querySelector(".retro-site")!.getBoundingClientRect();
+        const header = document.querySelector(".retro-banner-header")!.getBoundingClientRect();
+        const picture = document.querySelector(".retro-banner-picture")!.getBoundingClientRect();
+        const img = document.querySelector(".retro-banner-picture img")!.getBoundingClientRect();
+        return {
+          containerWidth: container.width,
+          headerWidth: header.width,
+          pictureWidth: picture.width,
+          imageWidth: img.width,
+          imageHeight: img.height,
+          horizontalGapLeft: Math.abs(header.left - img.left),
+          horizontalGapRight: Math.abs(header.right - img.right),
+          verticalGapTop: Math.abs(header.top - img.top),
+          verticalGapBottom: Math.abs(header.bottom - img.bottom),
+        };
+      });
+      expect(alignment.headerWidth).toBeCloseTo(alignment.containerWidth, 1);
+      expect(alignment.pictureWidth).toBeCloseTo(alignment.headerWidth, 1);
+      expect(alignment.imageWidth).toBeCloseTo(alignment.headerWidth, 1);
+      expect(alignment.horizontalGapLeft).toBeLessThan(2);
+      expect(alignment.horizontalGapRight).toBeLessThan(2);
+      expect(alignment.verticalGapTop).toBeLessThan(2);
+      expect(alignment.verticalGapBottom).toBeLessThan(2);
       await expect(page.locator(".retro-banner-cta")).toHaveAttribute("href", "#konten");
       await expect(page.locator("astro-dev-toolbar")).toHaveCount(0);
       await expect(page.locator("main h1")).toBeVisible();
@@ -215,4 +237,34 @@ test("webcam clearly marked simulation and camera selection", async ({ page }) =
   await page.getByRole("button", { name: /CAM 02/i }).click();
   await expect(page.locator(".camera-choice").nth(1)).toHaveAttribute("aria-pressed", "true");
   await expect(page.locator(".webcam-caption").first()).toContainText("Gedung Putih");
+});
+
+test("full banner remains intact on both sides of the responsive breakpoint", async ({ page }) => {
+  for (const width of [599, 600, 601, 820, 821, 960]) {
+    await page.setViewportSize({ width, height: 850 });
+    await page.goto("/");
+    const metrics = await page.locator(".retro-banner-picture img").evaluate((node) => {
+      const img = node as HTMLImageElement;
+      const banner = img.getBoundingClientRect();
+      const header = img.closest("header")!.getBoundingClientRect();
+      return {
+        source: img.currentSrc,
+        naturalWidth: img.naturalWidth,
+        naturalHeight: img.naturalHeight,
+        width: banner.width,
+        height: banner.height,
+        left: banner.left - header.left,
+        right: header.right - banner.right,
+        top: banner.top - header.top,
+        bottom: header.bottom - banner.bottom,
+      };
+    });
+    expect(metrics.source).toContain("better-call-prabowo-desktop.avif");
+    expect(metrics.naturalWidth).toBe(1200);
+    expect(metrics.naturalHeight).toBe(220);
+    expect(Math.abs(metrics.width / metrics.height - 1200 / 220)).toBeLessThan(0.02);
+    for (const gap of [metrics.left, metrics.right, metrics.top, metrics.bottom]) {
+      expect(Math.abs(gap), `Banner must meet header edges at ${width}px`).toBeLessThan(2);
+    }
+  }
 });
